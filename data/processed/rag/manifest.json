@@ -1,0 +1,400 @@
+{
+  "index_type": "hybrid BM25 + multilingual vector retrieval + deterministic cross-feature re-ranking",
+  "chunking": "page-preserving semantic sections by headings/articles/chapters, then bounded sentence chunks",
+  "chunk_size_chars_max": 1400,
+  "long_section_overlap_chars": 120,
+  "embedding_backend": "nitaq-multilingual-subword-hash-v1",
+  "embedding_dimensions": 384,
+  "embedding_rows": 373,
+  "chunk_count": 373,
+  "approved_catalog_sources": 8,
+  "metric_cards": 17,
+  "blocked_sources": [],
+  "sources": [
+    {
+      "source_id": "gastat_warehousing_methodology_2024",
+      "path": "knowledge/rag/gastat_warehousing_logistics_methodology_2024.md",
+      "pages_total": null,
+      "pages_included": null,
+      "included_page_numbers": [],
+      "empty_or_unusable_pages": [],
+      "chunks": 17
+    },
+    {
+      "source_id": "gastat_road_transport_methodology",
+      "path": "knowledge/rag/gastat_road_transport_methodology_en.pdf",
+      "pages_total": 24,
+      "pages_included": 24,
+      "included_page_numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "empty_or_unusable_pages": [],
+      "chunks": 45,
+      "ocr_pages_used": [],
+      "selection_policy": "all usable pages"
+    },
+    {
+      "source_id": "logisti_warehouse_technical_guide",
+      "path": "knowledge/rag/technical-guide-for-construction-and-operation-of-warehouses-ar.pdf",
+      "pages_total": 53,
+      "pages_included": 52,
+      "included_page_numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53
+      ],
+      "empty_or_unusable_pages": [
+        8
+      ],
+      "chunks": 92,
+      "ocr_pages_used": [],
+      "selection_policy": "all usable pages"
+    },
+    {
+      "source_id": "momah_warehouse_requirements_2025",
+      "path": "knowledge/rag/warehouse_requirements_2025_ar.pdf",
+      "pages_total": 39,
+      "pages_included": 37,
+      "included_page_numbers": [
+        1,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38
+      ],
+      "empty_or_unusable_pages": [
+        2,
+        39
+      ],
+      "chunks": 58,
+      "ocr_pages_used": [],
+      "selection_policy": "all usable pages"
+    },
+    {
+      "source_id": "nidlp_annual_report_2025",
+      "path": "knowledge/rag/nidlp_annual_report_2025_ar.pdf",
+      "pages_total": 86,
+      "pages_included": 13,
+      "included_page_numbers": [
+        5,
+        6,
+        17,
+        18,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        59,
+        70,
+        71
+      ],
+      "empty_or_unusable_pages": [
+        1,
+        2,
+        86
+      ],
+      "chunks": 27,
+      "ocr_pages_used": [],
+      "selection_policy": "visually reviewed logistics/ports page allowlist plus keyword relevance"
+    },
+    {
+      "source_id": "kapsarc_sustainable_freight_2020",
+      "path": "knowledge/rag/kapsarc_sustainable_freight_policy_2020_en.pdf",
+      "pages_total": 24,
+      "pages_included": 24,
+      "included_page_numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "empty_or_unusable_pages": [],
+      "chunks": 45,
+      "ocr_pages_used": [],
+      "selection_policy": "all usable pages"
+    },
+    {
+      "source_id": "kapsarc_container_throughput_2022",
+      "path": "knowledge/rag/kapsarc_container_throughput_trends_2022_en.pdf",
+      "pages_total": 3,
+      "pages_included": 2,
+      "included_page_numbers": [
+        1,
+        2
+      ],
+      "empty_or_unusable_pages": [
+        3
+      ],
+      "chunks": 4,
+      "ocr_pages_used": [],
+      "selection_policy": "all usable pages"
+    },
+    {
+      "source_id": "tga_goods_brokerage_regulation_2025",
+      "path": "knowledge/rag/pending_ocr/tga_goods_transport_brokerage_regulation_2025_ar.pdf",
+      "pages_total": 21,
+      "pages_included": 21,
+      "included_page_numbers": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "empty_or_unusable_pages": [],
+      "chunks": 68,
+      "ocr_pages_used": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21
+      ],
+      "selection_policy": "all usable pages"
+    },
+    {
+      "source_id": "metric_card__activated_logistics_centers_2023",
+      "path": "knowledge/cards/metrics/activated_logistics_centers_2023.md",
+      "chunks": 1
+    },
+    {
+      "source_id": "metric_card__activated_logistics_centers_2024",
+      "path": "knowledge/cards/metrics/activated_logistics_centers_2024.md",
+      "chunks": 1
+    },
+    {
+      "source_id": "metric_card__activated_logistics_centers_area_sqm_2023",
+      "path": "knowledge/cards/metrics/activated_logistics_centers_area_sqm_2023.md",
+      "chunks": 1
+    },
+    {
+      "source_id": "metric_card__activated_logistics_centers_area_sqm_2024",
+      "path": "knowledge/cards/metrics/activated_logistics_centers_area_sqm_2024.md",
+      "chunks": 1
+    },
+    {
+      "source_id": "metric_card__delivery_q1_2024",
+      "path": "knowledge/cards/metrics/delivery_q1_2024.md",
+      "chunks": 1
+    },
+    {
+      "source_id": "metric_card__delivery_q2_2024",
+      "path": "knowledge/cards/metrics/delivery_q2_2024.md",
+      "chunks": 1
+    },
+    {
+      "source_id": "metric_card__delivery_q3_2024",
+      "path": "knowledge/cards/metrics/delivery_q3_2024.md",
+      "chunks": 1
+    },
+    {
+      "source_id": "metric_card__delivery_q4_2024",
+      "path": "knowledge/cards/metrics/delivery_q4_2024.md",
+      "chunks": 1
+    },
+    {
+      "source_id": "metric_card__delivery_total_2024_source",
+      "path": "knowledge/cards/metrics/delivery_total_2024_source.md",
+      "chunks": 1
+    },
+    {
+      "source_id": "metric_card__freight_post_licenses_2023",
+      "path": "knowledge/cards/metrics/freight_post_licenses_2023.md",
+      "chunks": 1
+    },
+    {
+      "source_id": "metric_card__freight_post_licenses_2024",
+      "path": "knowledge/cards/metrics/freight_post_licenses_2024.md",
+      "chunks": 1
+    },
+    {
+      "source_id": "metric_card__population_2023",
+      "path": "knowledge/cards/metrics/population_2023.md",
+      "chunks": 1
+    },
+    {
+      "source_id": "metric_card__population_2024",
+      "path": "knowledge/cards/metrics/population_2024.md",
+      "chunks": 1
+    },
+    {
+      "source_id": "metric_card__warehouse_area_sqm_2023",
+      "path": "knowledge/cards/metrics/warehouse_area_sqm_2023.md",
+      "chunks": 1
+    },
+    {
+      "source_id": "metric_card__warehouse_area_sqm_2024",
+      "path": "knowledge/cards/metrics/warehouse_area_sqm_2024.md",
+      "chunks": 1
+    },
+    {
+      "source_id": "metric_card__warehouse_count_2023",
+      "path": "knowledge/cards/metrics/warehouse_count_2023.md",
+      "chunks": 1
+    },
+    {
+      "source_id": "metric_card__warehouse_count_2024",
+      "path": "knowledge/cards/metrics/warehouse_count_2024.md",
+      "chunks": 1
+    }
+  ],
+  "numeric_policy": "RAG explains definitions/methodology/requirements; regional numeric answers must come from Phase 2 tools."
+}

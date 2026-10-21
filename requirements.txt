@@ -1,0 +1,8 @@
+streamlit>=1.57,<2
+altair>=5,<7
+pandas>=2.0,<3
+numpy>=1.26,<3
+groq>=0.31,<1
+pydantic>=2.10,<3
+python-dotenv>=1,<2
+pypdf>=5,<7

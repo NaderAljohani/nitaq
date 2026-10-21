@@ -1,0 +1,9 @@
+# Optional, one-time OCR rebuild dependencies. Not needed to run Nitaq.
+pypdfium2>=5,<6
+winrt-Windows.Foundation>=3.2,<4
+winrt-Windows.Foundation.Collections>=3.2,<4
+winrt-Windows.Globalization>=3.2,<4
+winrt-Windows.Graphics.Imaging>=3.2,<4
+winrt-Windows.Media.Ocr>=3.2,<4
+winrt-Windows.Storage>=3.2,<4
+winrt-Windows.Storage.Streams>=3.2,<4

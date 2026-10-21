@@ -1,0 +1,23 @@
+{
+  "built_on": "2026-07-30",
+  "purpose": "Small validated runtime datasets; full raw sources are kept in the local ZIP archive.",
+  "outputs": [
+    {
+      "path": "data/processed/runtime/portwatch_monthly_activity_2019_2026.csv",
+      "bytes": 232032,
+      "sha256": "74d36a7c6de4a0a1132123a7e3eb4c2e1404b0a327961fa9d4947cb2290d5582"
+    },
+    {
+      "path": "data/processed/runtime/logistics_centers_snapshot_2026-07-28.csv",
+      "bytes": 22110,
+      "sha256": "141f74130631405766e32df7be0c2408175b2224068e8a1c7983c8a4ea2bc49a"
+    },
+    {
+      "path": "data/processed/runtime/modon_regional_context_2023_2024.csv",
+      "bytes": 1124,
+      "sha256": "c23d4199519a6c2cbdb0ce4398150d4f6fea5b90cda24a07c1e22d3a56983eca"
+    }
+  ],
+  "modon_unmapped_industrial_cities": [],
+  "raw_archive": "NITAQ_CLIENT_PACKAGE/01_CORE_SOURCE_DATA/RAW_DATA_ARCHIVE/raw_sources_2026-07-30.zip"
+}

@@ -1,0 +1,334 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1600" viewBox="0 0 2400 1600" role="img" aria-labelledby="title desc">
+  <title id="title">Nitaq AI Copilot — Current System Architecture</title>
+  <desc id="desc">A high-resolution vector architecture diagram showing the Streamlit experience, Nitaq orchestration, Groq tool planning, deterministic Python analytics, bilingual RAG, repositories, datasets, PDFs, and grounded answer flow.</desc>
+
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#061321"/>
+      <stop offset="0.5" stop-color="#09182a"/>
+      <stop offset="1" stop-color="#07101c"/>
+    </linearGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#44e0ad"/>
+      <stop offset="1" stop-color="#28aee8"/>
+    </linearGradient>
+    <linearGradient id="blueCard" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#153454"/>
+      <stop offset="1" stop-color="#10263f"/>
+    </linearGradient>
+    <linearGradient id="purpleCard" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#30255a"/>
+      <stop offset="1" stop-color="#211b42"/>
+    </linearGradient>
+    <linearGradient id="greenCard" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#133f3b"/>
+      <stop offset="1" stop-color="#102c2c"/>
+    </linearGradient>
+    <linearGradient id="orangeCard" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#51331f"/>
+      <stop offset="1" stop-color="#342419"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M 48 0 L 0 0 0 48" fill="none" stroke="#8fb9d9" stroke-opacity="0.045" stroke-width="1"/>
+    </pattern>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="12" stdDeviation="18" flood-color="#000814" flood-opacity="0.48"/>
+    </filter>
+    <filter id="softGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="12" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrowBlue" markerWidth="14" markerHeight="14" refX="11" refY="7" orient="auto" markerUnits="strokeWidth">
+      <path d="M1,1 L12,7 L1,13 Z" fill="#56c8f4"/>
+    </marker>
+    <marker id="arrowGreen" markerWidth="14" markerHeight="14" refX="11" refY="7" orient="auto" markerUnits="strokeWidth">
+      <path d="M1,1 L12,7 L1,13 Z" fill="#50ddb0"/>
+    </marker>
+    <marker id="arrowPurple" markerWidth="14" markerHeight="14" refX="11" refY="7" orient="auto" markerUnits="strokeWidth">
+      <path d="M1,1 L12,7 L1,13 Z" fill="#b18cff"/>
+    </marker>
+    <style>
+      .title { font: 600 58px 'Segoe UI', Inter, Arial, sans-serif; fill: #f5fbff; letter-spacing: -1px; }
+      .subtitle { font: 400 25px 'Segoe UI', Inter, Arial, sans-serif; fill: #9eb8cc; }
+      .section { font: 600 19px 'Segoe UI', Inter, Arial, sans-serif; fill: #7f9bb1; letter-spacing: 4px; }
+      .card-title { font: 600 29px 'Segoe UI', Inter, Arial, sans-serif; fill: #f4f9fc; }
+      .card-sub { font: 400 21px 'Segoe UI', Inter, Arial, sans-serif; fill: #afc3d2; }
+      .small-title { font: 600 23px 'Segoe UI', Inter, Arial, sans-serif; fill: #f4f9fc; }
+      .small-sub { font: 400 18px 'Segoe UI', Inter, Arial, sans-serif; fill: #a9becc; }
+      .micro { font: 500 16px 'Segoe UI', Inter, Arial, sans-serif; fill: #7fd9ec; letter-spacing: 1px; }
+      .pill { font: 600 17px 'Segoe UI', Inter, Arial, sans-serif; fill: #d9f7ee; }
+      .step { font: 700 21px 'Segoe UI', Inter, Arial, sans-serif; fill: #061321; }
+      .panel { fill: #0d1d2e; fill-opacity: .84; stroke: #274058; stroke-width: 2; }
+      .node { stroke-width: 2; filter: url(#shadow); }
+      .flow-blue { fill: none; stroke: #56c8f4; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#arrowBlue); }
+      .flow-green { fill: none; stroke: #50ddb0; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#arrowGreen); }
+      .flow-purple { fill: none; stroke: #b18cff; stroke-width: 5; stroke-linecap: round; stroke-linejoin: round; marker-end: url(#arrowPurple); }
+      .flow-dashed { fill: none; stroke: #b18cff; stroke-width: 4; stroke-dasharray: 12 12; stroke-linecap: round; marker-end: url(#arrowPurple); opacity: .9; }
+    </style>
+  </defs>
+
+  <rect width="2400" height="1600" fill="url(#background)"/>
+  <rect width="2400" height="1600" fill="url(#grid)"/>
+  <circle cx="2120" cy="-80" r="460" fill="#18b9d7" opacity="0.07"/>
+  <circle cx="160" cy="1540" r="420" fill="#6b4ce6" opacity="0.08"/>
+
+  <!-- Header -->
+  <g transform="translate(94 75)">
+    <rect x="0" y="0" width="15" height="92" rx="8" fill="url(#brand)" filter="url(#softGlow)"/>
+    <text x="45" y="56" class="title">Nitaq AI Copilot</text>
+    <text x="47" y="98" class="subtitle">Current system architecture · bilingual logistics evidence and decision assistant</text>
+  </g>
+  <g transform="translate(1785 92)">
+    <rect width="214" height="48" rx="24" fill="#173b3a" stroke="#37c89d" stroke-opacity=".55"/>
+    <circle cx="29" cy="24" r="7" fill="#4be0ad"/>
+    <text x="49" y="31" class="pill">Dynamic analysis</text>
+    <rect x="230" width="280" height="48" rx="24" fill="#222c4f" stroke="#9578e8" stroke-opacity=".55"/>
+    <circle cx="259" cy="24" r="7" fill="#b18cff"/>
+    <text x="279" y="31" class="pill">No stored answers</text>
+  </g>
+
+  <!-- Primary journey -->
+  <text x="95" y="238" class="section">PRIMARY REQUEST FLOW</text>
+
+  <!-- User -->
+  <g transform="translate(95 275)">
+    <rect width="260" height="205" rx="28" fill="url(#blueCard)" stroke="#3aaee4" class="node"/>
+    <circle cx="56" cy="55" r="27" fill="#56c8f4"/>
+    <circle cx="56" cy="48" r="9" fill="#082038"/>
+    <path d="M39 72 C42 58 70 58 73 72" fill="none" stroke="#082038" stroke-width="6" stroke-linecap="round"/>
+    <circle cx="222" cy="38" r="21" fill="#56c8f4"/>
+    <text x="222" y="46" text-anchor="middle" class="step">1</text>
+    <text x="30" y="119" class="card-title">User</text>
+    <text x="30" y="154" class="card-sub">Arabic or English</text>
+    <text x="30" y="183" class="card-sub">logistics question</text>
+  </g>
+
+  <!-- Streamlit -->
+  <g transform="translate(455 275)">
+    <rect width="440" height="205" rx="28" fill="url(#blueCard)" stroke="#3aaee4" class="node"/>
+    <circle cx="398" cy="38" r="21" fill="#56c8f4"/>
+    <text x="398" y="46" text-anchor="middle" class="step">2</text>
+    <rect x="28" y="31" width="58" height="47" rx="8" fill="#0a1b2d" stroke="#56c8f4"/>
+    <path d="M39 64 L50 52 L61 59 L75 43" fill="none" stroke="#56c8f4" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="28" y="119" class="card-title">Streamlit Experience</text>
+    <text x="28" y="154" class="card-sub">Chat · language toggle · compact answer</text>
+    <text x="28" y="183" class="card-sub">Expandable charts, tables and evidence</text>
+  </g>
+
+  <!-- Orchestrator -->
+  <g transform="translate(995 255)">
+    <rect width="510" height="245" rx="30" fill="url(#purpleCard)" stroke="#9a78ee" class="node"/>
+    <circle cx="468" cy="40" r="22" fill="#b18cff"/>
+    <text x="468" y="48" text-anchor="middle" class="step">3</text>
+    <circle cx="58" cy="61" r="29" fill="#b18cff" opacity=".18" stroke="#b18cff"/>
+    <path d="M45 61 H71 M58 48 V74 M48 51 L68 71 M68 51 L48 71" stroke="#c8b5ff" stroke-width="3" stroke-linecap="round"/>
+    <text x="102" y="58" class="micro">CORE CONTROL PLANE</text>
+    <text x="36" y="121" class="card-title">Nitaq Orchestrator</text>
+    <text x="36" y="157" class="card-sub">Complexity routing · max 4 steps · cost control</text>
+    <text x="36" y="188" class="card-sub">Preserves only relevant conversation context</text>
+    <rect x="35" y="207" width="210" height="26" rx="13" fill="#8e6fe2" opacity=".22"/>
+    <text x="140" y="226" text-anchor="middle" class="micro">ORCHESTRATOR.PY</text>
+  </g>
+
+  <!-- Answer -->
+  <g transform="translate(1625 275)">
+    <rect width="680" height="205" rx="28" fill="url(#greenCard)" stroke="#44d7a9" class="node"/>
+    <circle cx="638" cy="38" r="21" fill="#50ddb0"/>
+    <text x="638" y="46" text-anchor="middle" class="step">4</text>
+    <circle cx="59" cy="56" r="26" fill="#50ddb0" opacity=".18" stroke="#50ddb0"/>
+    <path d="M45 57 L54 66 L73 45" fill="none" stroke="#65e8be" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="101" y="63" class="micro">GROUNDED OUTPUT</text>
+    <text x="30" y="119" class="card-title">Answer First, Evidence on Demand</text>
+    <text x="30" y="154" class="card-sub">Short bilingual summary · key facts · one caveat</text>
+    <text x="30" y="183" class="card-sub">Detailed chart, table, sources and limitations stay collapsible</text>
+  </g>
+
+  <path d="M355 378 H430" class="flow-blue"/>
+  <path d="M895 378 H970" class="flow-blue"/>
+  <path d="M1505 378 H1600" class="flow-green"/>
+
+  <!-- Intelligence layer -->
+  <text x="95" y="575" class="section">INTELLIGENCE &amp; CONTROL</text>
+  <rect x="95" y="606" width="2210" height="430" rx="34" class="panel"/>
+
+  <!-- Context Intelligence -->
+  <g transform="translate(135 650)">
+    <rect width="540" height="340" rx="26" fill="url(#blueCard)" stroke="#315f86" class="node"/>
+    <circle cx="48" cy="47" r="21" fill="#56c8f4"/>
+    <text x="48" y="55" text-anchor="middle" class="step">A</text>
+    <text x="84" y="55" class="small-title">Context Intelligence</text>
+    <line x1="30" y1="84" x2="510" y2="84" stroke="#4c7394" stroke-opacity=".65"/>
+
+    <g transform="translate(28 108)">
+      <rect width="230" height="88" rx="16" fill="#0b2238" stroke="#2f6f98"/>
+      <text x="20" y="33" class="small-title">Intent &amp; Language</text>
+      <text x="20" y="62" class="small-sub">Arabic / English detection</text>
+    </g>
+    <g transform="translate(282 108)">
+      <rect width="230" height="88" rx="16" fill="#0b2238" stroke="#2f6f98"/>
+      <text x="20" y="33" class="small-title">Entity Resolution</text>
+      <text x="20" y="62" class="small-sub">Cities · regions · ports</text>
+    </g>
+    <g transform="translate(28 216)">
+      <rect width="230" height="88" rx="16" fill="#0b2238" stroke="#2f6f98"/>
+      <text x="20" y="33" class="small-title">Structured Memory</text>
+      <text x="20" y="62" class="small-sub">Topic · goal · entities · evidence</text>
+    </g>
+    <g transform="translate(282 216)">
+      <rect width="230" height="88" rx="16" fill="#0b2238" stroke="#2f6f98"/>
+      <text x="20" y="33" class="small-title">Topic Boundary</text>
+      <text x="20" y="62" class="small-sub">Prevents context leakage</text>
+    </g>
+  </g>
+
+  <!-- AI planning -->
+  <g transform="translate(725 650)">
+    <rect width="560" height="340" rx="26" fill="url(#purpleCard)" stroke="#765ab9" class="node"/>
+    <circle cx="48" cy="47" r="21" fill="#b18cff"/>
+    <text x="48" y="55" text-anchor="middle" class="step">B</text>
+    <text x="84" y="55" class="small-title">Adaptive Specialist Planning</text>
+    <line x1="30" y1="84" x2="530" y2="84" stroke="#715da1" stroke-opacity=".7"/>
+
+    <g transform="translate(30 108)">
+      <rect width="500" height="116" rx="18" fill="#191535" stroke="#8d6de0"/>
+      <circle cx="50" cy="51" r="26" fill="#9c7cf1" opacity=".22"/>
+      <path d="M38 51 H62 M50 39 V63" stroke="#c8b5ff" stroke-width="4" stroke-linecap="round"/>
+      <text x="92" y="45" class="small-title">Groq LLM Tool Planner</text>
+      <text x="92" y="75" class="small-sub">Understands the goal and selects one or more tools</text>
+      <text x="92" y="99" class="micro">ADAPTIVE PLANNING · SIMPLE OR MULTI-STEP</text>
+    </g>
+    <g transform="translate(30 245)">
+      <rect width="242" height="60" rx="15" fill="#241d47" stroke="#6f58ae"/>
+      <text x="121" y="28" text-anchor="middle" class="small-title">Model routing</text>
+      <text x="121" y="49" text-anchor="middle" class="small-sub">Primary / fast fallback</text>
+    </g>
+    <g transform="translate(288 245)">
+      <rect width="242" height="60" rx="15" fill="#241d47" stroke="#6f58ae"/>
+      <text x="121" y="28" text-anchor="middle" class="small-title">Compound Critic</text>
+      <text x="121" y="49" text-anchor="middle" class="small-sub">Language only · facts locked</text>
+    </g>
+  </g>
+
+  <!-- Tool registry and safety -->
+  <g transform="translate(1335 650)">
+    <rect width="930" height="340" rx="26" fill="url(#greenCard)" stroke="#378c74" class="node"/>
+    <circle cx="48" cy="47" r="21" fill="#50ddb0"/>
+    <text x="48" y="55" text-anchor="middle" class="step">C</text>
+    <text x="84" y="55" class="small-title">Controlled Tool Execution</text>
+    <line x1="30" y1="84" x2="900" y2="84" stroke="#3b796b" stroke-opacity=".72"/>
+
+    <g transform="translate(28 108)">
+      <rect width="270" height="196" rx="18" fill="#0d2927" stroke="#36a887"/>
+      <text x="22" y="37" class="small-title">Tool Registry</text>
+      <text x="22" y="70" class="small-sub">Schema validation</text>
+      <text x="22" y="99" class="small-sub">Intent allowlist</text>
+      <text x="22" y="128" class="small-sub">Argument grounding</text>
+      <text x="22" y="157" class="small-sub">Safe local fallback</text>
+      <rect x="22" y="169" width="171" height="21" rx="10" fill="#35b68e" opacity=".18"/>
+      <text x="108" y="185" text-anchor="middle" class="micro">17 APPROVED TOOLS</text>
+    </g>
+
+    <g transform="translate(326 108)">
+      <rect width="270" height="92" rx="17" fill="#0d2927" stroke="#36a887"/>
+      <text x="20" y="34" class="small-title">Input Guardrails</text>
+      <text x="20" y="64" class="small-sub">Injection and completeness checks</text>
+    </g>
+    <g transform="translate(326 212)">
+      <rect width="270" height="92" rx="17" fill="#0d2927" stroke="#36a887"/>
+      <text x="20" y="34" class="small-title">Output Guardrails</text>
+      <text x="20" y="64" class="small-sub">Numbers, winner and ranking</text>
+    </g>
+
+    <g transform="translate(624 108)">
+      <rect width="278" height="196" rx="18" fill="#0d2927" stroke="#36a887"/>
+      <text x="22" y="37" class="small-title">Grounded Response</text>
+      <text x="22" y="70" class="small-sub">Python result → concise prose</text>
+      <text x="22" y="99" class="small-sub">Arabic / English templates</text>
+      <text x="22" y="128" class="small-sub">Sources kept outside answer</text>
+      <text x="22" y="157" class="small-sub">Technical errors hidden</text>
+      <rect x="22" y="169" width="224" height="21" rx="10" fill="#35b68e" opacity=".18"/>
+      <text x="134" y="185" text-anchor="middle" class="micro">RESPONSE_BUILDER.PY</text>
+    </g>
+  </g>
+
+  <path d="M675 820 H700" class="flow-blue"/>
+  <path d="M1285 820 H1310" class="flow-purple"/>
+  <path d="M1250 500 V575 H405 V625" class="flow-purple"/>
+  <path d="M1250 500 V625" class="flow-purple"/>
+  <path d="M1250 500 V575 H1800 V625" class="flow-green"/>
+  <path d="M2098 650 V548 H1970 V505" class="flow-green"/>
+
+  <!-- Data and reasoning foundation -->
+  <text x="95" y="1110" class="section">DETERMINISTIC REASONING &amp; EVIDENCE FOUNDATION</text>
+  <rect x="95" y="1140" width="2210" height="340" rx="34" class="panel"/>
+
+  <!-- Analytics engine -->
+  <g transform="translate(135 1180)">
+    <rect width="480" height="255" rx="24" fill="url(#orangeCard)" stroke="#c27a45" class="node"/>
+    <text x="28" y="45" class="micro">PYTHON ANALYTICS ENGINE</text>
+    <text x="28" y="88" class="small-title">Computed at Request Time</text>
+    <text x="28" y="123" class="small-sub">• Multi-signal warehouse ranking</text>
+    <text x="28" y="154" class="small-sub">• Region and trend comparison</text>
+    <text x="28" y="185" class="small-sub">• Port activity and trade direction</text>
+    <text x="28" y="216" class="small-sub">• Missing-data and validity checks</text>
+  </g>
+
+  <!-- Repository -->
+  <g transform="translate(680 1180)">
+    <rect width="420" height="255" rx="24" fill="url(#orangeCard)" stroke="#c27a45" class="node"/>
+    <text x="28" y="45" class="micro">CANONICAL DATA ACCESS</text>
+    <text x="28" y="88" class="small-title">Mizan Repository</text>
+    <text x="28" y="123" class="small-sub">Region and city aliases</text>
+    <text x="28" y="154" class="small-sub">Metric definitions and units</text>
+    <text x="28" y="185" class="small-sub">Port-to-region mapping</text>
+    <text x="28" y="216" class="small-sub">Source and limitation metadata</text>
+  </g>
+
+  <!-- Structured data -->
+  <g transform="translate(1165 1180)">
+    <rect width="450" height="255" rx="24" fill="url(#blueCard)" stroke="#3a78a6" class="node"/>
+    <text x="28" y="45" class="micro">STRUCTURED DATA</text>
+    <text x="28" y="88" class="small-title">Approved Numeric Sources</text>
+    <text x="28" y="123" class="small-sub">13-region master dataset</text>
+    <text x="28" y="154" class="small-sub">Delivery and warehouse indicators</text>
+    <text x="28" y="185" class="small-sub">PortWatch experimental time series</text>
+    <text x="28" y="216" class="small-sub">Metric and source catalogs</text>
+  </g>
+
+  <!-- RAG -->
+  <g transform="translate(1680 1180)">
+    <rect width="585" height="255" rx="24" fill="url(#purpleCard)" stroke="#8064c5" class="node"/>
+    <text x="28" y="45" class="micro">RESEARCH AGENT</text>
+    <text x="28" y="88" class="small-title">Hybrid RAG + Official Web</text>
+    <text x="28" y="123" class="small-sub">Arabic ↔ English vectors + BM25</text>
+    <text x="28" y="154" class="small-sub">Heading chunks · OCR · re-ranking</text>
+    <text x="28" y="185" class="small-sub">Allowlisted Saudi official websites</text>
+    <text x="28" y="216" class="small-sub">Pages · links · publication/access dates</text>
+  </g>
+
+  <path d="M680 1308 H640" class="flow-green"/>
+  <path d="M1165 1308 H1125" class="flow-blue"/>
+  <path d="M1968 1180 V1080 H2035 V1015" class="flow-purple"/>
+  <path d="M375 1180 V1080 H1650 V1015" class="flow-green"/>
+
+  <!-- Footer principles -->
+  <g transform="translate(95 1520)">
+    <rect width="2210" height="2" fill="#355068" opacity=".7"/>
+    <g transform="translate(0 28)">
+      <circle cx="12" cy="12" r="10" fill="#50ddb0"/>
+      <text x="34" y="19" class="small-sub">No question bank or cached answers</text>
+    </g>
+    <g transform="translate(470 28)">
+      <circle cx="12" cy="12" r="10" fill="#56c8f4"/>
+      <text x="34" y="19" class="small-sub">Numbers are calculated by Python tools</text>
+    </g>
+    <g transform="translate(1010 28)">
+      <circle cx="12" cy="12" r="10" fill="#b18cff"/>
+      <text x="34" y="19" class="small-sub">PDF pages and web access dates are retained</text>
+    </g>
+    <g transform="translate(1570 28)">
+      <circle cx="12" cy="12" r="10" fill="#f2a76f"/>
+      <text x="34" y="19" class="small-sub">Technical telemetry is opt-in and sanitized</text>
+    </g>
+  </g>
+</svg>

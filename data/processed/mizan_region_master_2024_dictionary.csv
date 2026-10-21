@@ -1,0 +1,47 @@
+﻿metric,label_ar,unit,period,source,definition_or_limitation
+region_id,معرف ترتيب المنطقة,identifier,static,Canonical region list,معرف داخلي ثابت
+region_en,اسم المنطقة الإنجليزية الموحد,text,static,Canonical region list,تم توحيد تهجئات المصادر
+region_ar,اسم المنطقة العربية الموحد,text,static,Canonical region list,13 منطقة إدارية
+population_2023,سكان المنطقة لعام 2023,person,2023,"KAPSARC Sheet1, Date=2023, Gender=Total",قيمة مباشرة؛ تختلف إقليميًا عن الاستعادة من كثافة الطرق مع تطابق المجموع الوطني
+population_2024,سكان المنطقة لعام 2024,person,2024,"KAPSARC Sheet1, Date=2024, Gender=Total",قيمة مباشرة ومطابقة للاستعادة السابقة إقليميًا
+delivery_q1_2024,طلبات التوصيل المنفذة في الربع الأول,request,2024 Q1,GASTAT Warehousing and Logistics 2024 Table 13,نشاط توصيل مرخص
+delivery_q2_2024,طلبات التوصيل المنفذة في الربع الثاني,request,2024 Q2,GASTAT Warehousing and Logistics 2024 Table 13,نشاط توصيل مرخص
+delivery_q3_2024,طلبات التوصيل المنفذة في الربع الثالث,request,2024 Q3,GASTAT Warehousing and Logistics 2024 Table 13,نشاط توصيل مرخص
+delivery_q4_2024,طلبات التوصيل المنفذة في الربع الرابع,request,2024 Q4,GASTAT Warehousing and Logistics 2024 Table 13,نشاط توصيل مرخص
+delivery_total_2024_source,إجمالي الطلبات كما نشره المصدر,request,2024,GASTAT Warehousing and Logistics 2024 Table 13,يُراجع مقابل مجموع الأرباع
+delivery_total_2024_calculated,مجموع الأرباع المحسوب,request,2024,Derived: Q1+Q2+Q3+Q4,يجب أن يطابق إجمالي المصدر
+delivery_total_matches_quarters,اختبار مطابقة الإجمالي للأرباع,boolean,2024,Derived validation,True لكل المناطق
+warehouse_count_2023,عدد المستودعات التجارية المرخصة,licensed warehouse,2023,GASTAT Warehousing and Logistics 2024 Table 5,مطابق لإصدار 2023 Table 5
+warehouse_area_sqm_2023,مساحة المستودعات التجارية المرخصة,square meter,2023,GASTAT Warehousing and Logistics 2024 Table 5,ليست إشغالًا أو سعة تشغيلية
+warehouse_count_2024,عدد المستودعات التجارية المرخصة,licensed warehouse,2024,GASTAT Warehousing and Logistics 2024 Table 5,قيمة ترخيصية
+warehouse_area_sqm_2024,مساحة المستودعات التجارية المرخصة,square meter,2024,GASTAT Warehousing and Logistics 2024 Table 5,ليست إشغالًا أو سعة تشغيلية
+freight_post_licenses_2023,تراخيص نقل البضائع والخدمات البريدية السارية,active license,end-2023,GASTAT Warehousing and Logistics 2023 Table 8,تجميع لأنشطة متعددة حسب حاشية المصدر
+freight_post_licenses_2024,تراخيص نقل البضائع والخدمات البريدية النشطة,active license,end-2024,GASTAT Warehousing and Logistics 2024 Table 9,تجميع لأنشطة متعددة حسب حاشية المصدر
+activated_logistics_centers_2023,عدد المراكز اللوجستية المفعلة,activated center,2023,GASTAT Warehousing and Logistics 2024 Tables 1-2,وفق تعريف المصدر للمراكز المفعلة
+activated_logistics_centers_2024,عدد المراكز اللوجستية المفعلة,activated center,2024,GASTAT Warehousing and Logistics 2024 Tables 1-2,وفق تعريف المصدر للمراكز المفعلة
+activated_logistics_centers_area_sqm_2023,مساحة المراكز المفعلة,square meter,2023,GASTAT Warehousing and Logistics 2024 Table 2,مجموع مساحات المراكز ذات الحالة Activated
+activated_logistics_centers_area_sqm_2024,مساحة المراكز المفعلة,square meter,2024,GASTAT Warehousing and Logistics 2024 Table 2,مجموع مساحات المراكز ذات الحالة Activated
+population_growth_pct,نمو السكان,decimal rate,2023-2024,Derived,(2024/2023)-1
+delivery_q4_vs_q1_growth_pct,تغير طلبات التوصيل داخل 2024,decimal rate,Q1-Q4 2024,Derived,ليس نموًا سنويًا؛ (Q4/Q1)-1
+delivery_requests_per_1000_population_2024,طلبات التوصيل لكل ألف نسمة,"request per 1,000 persons",2024,Derived,إجمالي الطلبات / سكان 2024 × 1000
+warehouse_count_growth_pct,نمو عدد المستودعات,decimal rate,2023-2024,Derived,(2024/2023)-1
+warehouse_area_growth_pct,نمو مساحة المستودعات,decimal rate,2023-2024,Derived,(2024/2023)-1
+freight_post_licenses_growth_pct,نمو تراخيص النقل والبريد,decimal rate,2023-2024,Derived,(2024/2023)-1
+activated_logistics_centers_change,التغير العددي في المراكز المفعلة,center,2023-2024,Derived,عدد 2024 ناقص عدد 2023
+activated_logistics_centers_growth_pct,نمو عدد المراكز المفعلة,decimal rate,2023-2024,Derived,فارغ عندما أساس 2023 يساوي صفرًا
+activated_logistics_centers_area_growth_pct,نمو مساحة المراكز المفعلة,decimal rate,2023-2024,Derived,فارغ عندما أساس 2023 يساوي صفرًا
+warehouse_area_sqm_per_capita_2023,مساحة مستودعات مرخصة للفرد,square meter per person,2023,Derived,المساحة / السكان
+warehouse_area_sqm_per_capita_2024,مساحة مستودعات مرخصة للفرد,square meter per person,2024,Derived,المساحة / السكان
+warehouse_count_per_100k_population_2024,عدد المستودعات لكل 100 ألف نسمة,"warehouse per 100,000 persons",2024,Derived,العدد / السكان × 100000
+freight_post_licenses_per_100k_population_2024,التراخيص لكل 100 ألف نسمة,"license per 100,000 persons",2024,Derived,العدد / السكان × 100000
+activated_logistics_centers_per_million_population_2024,المراكز المفعلة لكل مليون نسمة,"center per 1,000,000 persons",2024,Derived,العدد / السكان × 1000000
+delivery_requests_per_warehouse_sqm_2024,ضغط الطلبات على مساحة المستودعات المرخصة,request per square meter,2024,Derived,إجمالي الطلبات / المساحة المرخصة
+delivery_requests_per_freight_post_license_2024,طلبات التوصيل لكل ترخيص نقل/بريد,request per license,2024,Derived,إجمالي الطلبات / التراخيص
+logistics_center_presence_2024,وجود مركز لوجستي مفعّل,binary,2024,Derived,1 إذا كان العدد أكبر من صفر؛ وإلا 0
+population_source_ref,مرجع السكان,text,2023-2024,Metadata,مرجع ومصدر التحقق
+delivery_source_ref,مرجع التوصيل,text,2024,Metadata,اسم الملف والجدول
+warehouse_source_ref,مرجع المستودعات,text,2023-2024,Metadata,اسم الملف والجدول
+license_source_ref,مرجع التراخيص,text,2023-2024,Metadata,اسم الملف والجدول
+logistics_centers_source_ref,مرجع المراكز,text,2023-2024,Metadata,اسم الملف والجداول
+quality_notes_ar,ملاحظات الجودة,text,all,Metadata,نتائج التحقق الأساسية
+limitations_ar,قيود الاستخدام,text,all,Metadata,لا تُستخدم الدرجة كإثبات نقص فعلي
