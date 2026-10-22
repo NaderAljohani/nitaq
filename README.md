@@ -1,5 +1,7 @@
 # Nitaq | Saudi logistics evidence copilot
 
+[![Tests](https://github.com/NaderAljohani/nitaq/actions/workflows/ci.yml/badge.svg)](https://github.com/NaderAljohani/nitaq/actions/workflows/ci.yml)
+
 Nitaq answers Arabic and English questions about Saudi regional logistics using
 documented data and cited passages. It covers 13 regions and 17 source metrics.
 Python tools calculate comparisons and screening results; the conversational
@@ -30,13 +32,24 @@ python -m streamlit run streamlit_app.py
 
 No setup key is required for the default local evidence mode. For optional
 model-assisted conversation, copy `.env.example` to `.env`, add your own
-`GROQ_API_KEY`, and set `MIZAN_UI_OFFLINE=0`. Model availability depends on your
+`GROQ_API_KEY`, and set `NITAQ_UI_OFFLINE=0`. Model availability depends on your
 provider account. Technical conversation logging is disabled by default.
 
 For Streamlit hosting, use `streamlit_app.py` as the entrypoint. Store a real
 key in the platform's Secrets panel, rather than a tracked file. The supported
 dependency ranges are in `requirements.txt`; `requirements-lock.txt` records
 the resolved dependencies used for local verification.
+
+New configurations use `NITAQ_PRIMARY_MODEL`, `NITAQ_FAST_MODEL`,
+`NITAQ_MAX_TOOL_ITERATIONS`, `NITAQ_RAG_TOP_K`, `NITAQ_UI_OFFLINE`, and
+`NITAQ_UI_DEVELOPER_MODE`. Their older `MIZAN_*` equivalents remain supported;
+when both names are set, the `NITAQ_*` value takes precedence.
+
+## Try it
+
+Ask `Compare Riyadh and Makkah` or `قارن بين الرياض ومكة` for a regional
+comparison with a table and chart. Ask `ماهي البيانات المتوفرة؟` to inspect
+the available datasets. Source metadata accompanies analytical results.
 
 ## Architecture
 
@@ -62,8 +75,7 @@ flowchart LR
 
 ## Data and limitations
 
-This is an academic evidence-exploration prototype. Its bundled data is a
-historical snapshot, not a live feed. Licensed warehouse counts and area do not
+The application analyses a versioned historical snapshot. Licensed warehouse counts and area do not
 measure occupancy or usable capacity. Delivery counts do not measure unmet
 demand. Regional rankings are screening outputs; missing rent, competition,
 cost, occupancy, and profitability evidence limits investment conclusions.
@@ -82,8 +94,16 @@ python -m pytest -q
 ```
 
 The test suite includes a 100-question offline evaluation, grounding checks,
-retrieval provenance, and headless UI interactions. These tests do not establish
-the quality of live provider responses. CI is configured for Windows and Linux;
-the preparation report records what was actually run locally.
+retrieval provenance, configuration compatibility, and headless UI interactions.
+The linked CI runs the release checks and tests on Windows and Linux. Live
+provider response quality requires separate evaluation.
+
+## Design choices
+
+Python tools calculate numerical results before the conversational layer
+explains them. This keeps comparisons tied to the same dataset and calculation
+path. Retrieval combines lexical matching with deterministic subword hashing;
+it does not require a downloaded embedding model. The local evidence mode
+supports demos and regression checks without provider credentials.
 
 [الدليل العربي](README_AR.md) | [Preparation changes](docs/PREPARATION.md)

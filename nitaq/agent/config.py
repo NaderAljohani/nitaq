@@ -23,10 +23,10 @@ class AgentConfig:
         load_dotenv(project_root / ".env", override=False)
         return cls(
             root=project_root,
-            primary_model=os.getenv("MIZAN_PRIMARY_MODEL", "openai/gpt-oss-120b"),
-            fast_model=os.getenv("MIZAN_FAST_MODEL", "llama-3.1-8b-instant"),
-            max_tool_iterations=int(os.getenv("MIZAN_MAX_TOOL_ITERATIONS", "4")),
-            rag_top_k=int(os.getenv("MIZAN_RAG_TOP_K", "5")),
+            primary_model=os.getenv("NITAQ_PRIMARY_MODEL", os.getenv("MIZAN_PRIMARY_MODEL", "openai/gpt-oss-120b")),
+            fast_model=os.getenv("NITAQ_FAST_MODEL", os.getenv("MIZAN_FAST_MODEL", "llama-3.1-8b-instant")),
+            max_tool_iterations=int(os.getenv("NITAQ_MAX_TOOL_ITERATIONS", os.getenv("MIZAN_MAX_TOOL_ITERATIONS", "4"))),
+            rag_top_k=int(os.getenv("NITAQ_RAG_TOP_K", os.getenv("MIZAN_RAG_TOP_K", "5"))),
             log_enabled=os.getenv("NITAQ_TECHNICAL_LOG", "0").strip() == "1",
         )
 

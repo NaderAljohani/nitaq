@@ -68,7 +68,8 @@ def test_api_failure_uses_local_evidence_fallback_when_intent_is_known():
 
 
 def test_streamlit_app_runs_and_generates_comparison_dashboard(monkeypatch):
-    monkeypatch.setenv("MIZAN_UI_OFFLINE", "1")
+    monkeypatch.setenv("NITAQ_UI_OFFLINE", "1")
+    monkeypatch.setenv("MIZAN_UI_OFFLINE", "0")
     app = AppTest.from_file(Path(__file__).resolve().parents[1] / "streamlit_app.py", default_timeout=45).run()
     assert not app.exception
     assert app.title[0].value == "∞ Nitaq"
@@ -91,6 +92,7 @@ def test_streamlit_app_runs_and_generates_comparison_dashboard(monkeypatch):
 
 
 def test_streamlit_app_renders_current_center_listing_without_document_fallback(monkeypatch):
+    monkeypatch.delenv("NITAQ_UI_OFFLINE", raising=False)
     monkeypatch.setenv("MIZAN_UI_OFFLINE", "1")
     app = AppTest.from_file(Path(__file__).resolve().parents[1] / "streamlit_app.py", default_timeout=45).run()
     app.chat_input[0].set_value("أين توجد المراكز الـ59؟").run()
@@ -104,6 +106,7 @@ def test_streamlit_app_renders_current_center_listing_without_document_fallback(
 
 
 def test_streamlit_english_mode_renders_an_english_grounded_answer(monkeypatch):
+    monkeypatch.delenv("NITAQ_UI_OFFLINE", raising=False)
     monkeypatch.setenv("MIZAN_UI_OFFLINE", "1")
     app = AppTest.from_file(Path(__file__).resolve().parents[1] / "streamlit_app.py", default_timeout=45).run()
     app.get("button_group")[0].set_value("English").run()
