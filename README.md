@@ -7,6 +7,11 @@ documented data and cited passages. It covers 13 regions and 17 source metrics.
 Python tools calculate comparisons and screening results; the conversational
 layer routes questions and explains the evidence.
 
+![Nitaq Arabic comparison, chart, data table, and source references](docs/images/nitaq-demo.gif)
+
+Ten-second walkthrough of the running application in local evidence mode:
+an Arabic question, the comparison chart, its data table, and the source references.
+
 The repository runs in local evidence mode without an API key. An optional
 Groq integration adds model-assisted conversation.
 
