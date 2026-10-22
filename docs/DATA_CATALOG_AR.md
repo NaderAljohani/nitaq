@@ -1,6 +1,6 @@
-# كتالوج بيانات مشروع نطاق Nitaq
+# كتالوج بيانات مشروع ميزان Mizan
 
-> **حالة التخزين الحالية (30 يوليو 2026):** كل مسار يبدأ بـ`data/raw/` في هذا الكتالوج هو مسار المصدر الأصلي **داخل** `NITAQ_CLIENT_PACKAGE/01_CORE_SOURCE_DATA/RAW_DATA_ARCHIVE/raw_sources_2026-07-30.zip`، وليس ملفًا مطلوبًا أثناء تشغيل التطبيق. التطبيق يقرأ النسخ المعتمدة من `data/processed/` فقط.
+> **حالة التخزين الحالية (30 يوليو 2026):** كل مسار يبدأ بـ`data/raw/` في هذا الكتالوج هو مسار المصدر الأصلي **داخل** `MIZAN_CLIENT_PACKAGE/01_CORE_SOURCE_DATA/RAW_DATA_ARCHIVE/raw_sources_2026-07-30.zip`، وليس ملفًا مطلوبًا أثناء تشغيل التطبيق. التطبيق يقرأ النسخ المعتمدة من `data/processed/` فقط.
 
 ## 1. المصادر الأساسية المؤرشفة — `data/raw/core` داخل ملف ZIP
 
@@ -74,7 +74,7 @@
 ## 3. بيانات التحليل المؤرشفة — لقطة حزمة العميل
 
 الملفات التالية ليست مطلوبة لتشغيل التطبيق، ولذلك حُفظت في
-`NITAQ_CLIENT_PACKAGE/01_CORE_SOURCE_DATA/PROCESSED_DATA_SNAPSHOT/` بدل تكرارها داخل مجلد التشغيل.
+`MIZAN_CLIENT_PACKAGE/01_CORE_SOURCE_DATA/PROCESSED_DATA_SNAPSHOT/` بدل تكرارها داخل مجلد التشغيل.
 
 ### `population_by_region_2023_2024.csv`
 
@@ -195,7 +195,7 @@
 
 ### المخرجات الجديدة
 
-- `NITAQ_CLIENT_PACKAGE/01_CORE_SOURCE_DATA/PROCESSED_DATA_SNAPSHOT/saudi_regions.geojson`: نسخة الخريطة التحليلية المؤرشفة؛ الواجهة الحالية لا تعرض خريطة.
+- `MIZAN_CLIENT_PACKAGE/01_CORE_SOURCE_DATA/PROCESSED_DATA_SNAPSHOT/saudi_regions.geojson`: نسخة الخريطة التحليلية المؤرشفة؛ الواجهة الحالية لا تعرض خريطة.
 - `data/processed/saudi_regions_geography.csv`: أسماء المناطق ومراكز العرض ومراجع الخريطة.
 - `data/processed/port_region_mapping.csv`: 12 ميناء/رمزًا مربوطًا بالمدينة والمنطقة؛ سياق فقط.
 - `data/processed/mizan_context_asset_catalog.csv`: قرار الاستخدام والقيود لكل عائلة مصادر سياقية.

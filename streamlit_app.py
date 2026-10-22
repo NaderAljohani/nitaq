@@ -8,21 +8,21 @@ from typing import Any
 import streamlit as st
 from dotenv import load_dotenv
 
-from nitaq.agent import AgentConfig, MizanAgent
-from nitaq.agent.i18n import detect_language
-from nitaq.ui import build_dashboard_payload, render_answer_card, render_dashboard
+from mizan.agent import AgentConfig, MizanAgent
+from mizan.agent.i18n import detect_language
+from mizan.ui import build_dashboard_payload, render_answer_card, render_dashboard
 
 
 ROOT = Path(__file__).resolve().parent
 
 st.set_page_config(
-    page_title="نطاق Nitaq",
-    page_icon=":material/all_inclusive:",
+    page_title="ميزان Mizan",
+    page_icon=":material/balance:",
     layout="wide",
     initial_sidebar_state="collapsed",
 )
 
-st.html(ROOT / "nitaq" / "ui" / "theme.css")
+st.html(ROOT / "mizan" / "ui" / "theme.css")
 
 SUGGESTIONS = {
     "ar": {
@@ -39,35 +39,35 @@ SUGGESTIONS = {
 
 UI_TEXT = {
     "ar": {
-        "subtitle": "مساعد الأدلة والقرارات اللوجستية",
+        "subtitle": "تحليل اللوجستيات السعودية بالأدلة",
         "offline": "وضع محلي",
         "connected": "متصل",
         "new_chat": "محادثة جديدة",
-        "ask_title": "ابدأ بسؤال لوجستي",
-        "intro": "نطاق يفهم هدفك، يجمع البيانات والوثائق المناسبة، ثم يشرح لك النتيجة وحدودها.",
-        "academic": "نموذج جامعي · بيانات أساسية حتى 2024 · نتائج قابلة للتدقيق",
+        "ask_title": "قارن المناطق من بيانات موثقة",
+        "intro": "اسأل ميزان عن منطقة أو مؤشر. راجع المقارنة والرسوم والمصادر في مكان واحد.",
+        "coverage_note": "لقطة بيانات تاريخية · أرقام محسوبة بأدوات Python · مراجع قابلة للمراجعة",
         "suggestions": "أسئلة مقترحة",
-        "input": "اسأل نطاق عن منطقة أو مؤشر أو ميناء أو اشتراط…",
+        "input": "اسأل ميزان عن منطقة أو مؤشر أو ميناء أو اشتراط…",
         "done": "اكتمل التحليل",
         "failed": "تعذر إكمال التحليل",
-        "how": "كيف يعمل نطاق؟",
+        "how": "كيف يعمل ميزان؟",
         "trusted": "مصادر موثقة",
         "trusted_note": "مصادر سعودية رسمية وسياق تجريبي موضح بحدوده عند استخدامه.",
         "footer": "معرفة موثقة. قرارات لوجستية أذكى.",
     },
     "en": {
-        "subtitle": "Logistics evidence and decision assistant",
+        "subtitle": "Saudi logistics analysis with cited evidence",
         "offline": "Local mode",
         "connected": "Connected",
         "new_chat": "New conversation",
-        "ask_title": "Start with a logistics question",
-        "intro": "Nitaq understands your goal, gathers the right data and documents, then explains the result and its limits.",
-        "academic": "University project · Core data through 2024 · Auditable results",
+        "ask_title": "Compare regions using documented data",
+        "intro": "Ask Mizan about a region or indicator. Review comparisons, charts, and sources in one place.",
+        "coverage_note": "Historical snapshot · Python calculations · Reviewable references",
         "suggestions": "Suggested questions",
-        "input": "Ask Nitaq about a region, indicator, port, or requirement…",
+        "input": "Ask Mizan about a region, indicator, port, or requirement…",
         "done": "Analysis complete",
         "failed": "Analysis could not be completed",
-        "how": "How Nitaq works",
+        "how": "How Mizan works",
         "trusted": "Trusted sources",
         "trusted_note": "Official Saudi sources, plus clearly labeled experimental context when used.",
         "footer": "Trusted knowledge. Smarter logistics.",
@@ -104,10 +104,10 @@ def _load_streamlit_secret() -> str | None:
 def _agent_code_version() -> int:
     """Invalidate the cached agent when routing or analytics modules change during development."""
     code_files = [
-        *ROOT.joinpath("nitaq", "agent").glob("*.py"),
-        *ROOT.joinpath("nitaq", "tools").glob("*.py"),
-        *ROOT.joinpath("nitaq", "rag").glob("*.py"),
-        *ROOT.joinpath("nitaq", "ui").glob("*.py"),
+        *ROOT.joinpath("mizan", "agent").glob("*.py"),
+        *ROOT.joinpath("mizan", "tools").glob("*.py"),
+        *ROOT.joinpath("mizan", "rag").glob("*.py"),
+        *ROOT.joinpath("mizan", "ui").glob("*.py"),
     ]
     return max((path.stat().st_mtime_ns for path in code_files), default=0)
 
@@ -121,36 +121,20 @@ def _initialise_state() -> None:
     st.session_state.setdefault("messages", [])
     st.session_state.setdefault("conversation_id", str(uuid.uuid4()))
     st.session_state.setdefault("conversation_context", {})
-    st.session_state.setdefault("nitaq_ui_language", "العربية")
+    st.session_state.setdefault("mizan_ui_language", "العربية")
     st.session_state.setdefault("pending_question", None)
     st.session_state.setdefault("pending_history", [])
-    st.session_state.setdefault("intro_seen", False)
-
-
-def _render_intro_logo() -> None:
-    """Show a lightweight, CSS-only brand reveal once per browser session."""
-    st.html(
-        """
-        <div class="nitaq-intro-overlay" aria-hidden="true">
-          <div class="nitaq-intro-lockup">
-            <div class="nitaq-intro-mark">∞</div>
-            <div class="nitaq-intro-name">Nitaq</div>
-            <div class="nitaq-intro-line"></div>
-          </div>
-        </div>
-        """
-    )
 
 
 def _render_thinking_logo(label: str) -> None:
     """Keep slow model/tool work visibly alive without a heavy loading panel."""
     st.html(
         f"""
-        <div class="nitaq-thinking" role="status" aria-label="{label}">
-          <div class="nitaq-thinking-mark">∞</div>
-          <div class="nitaq-thinking-copy">
+        <div class="mizan-thinking" role="status" aria-label="{label}">
+          <div class="mizan-thinking-mark">⚖</div>
+          <div class="mizan-thinking-copy">
             <strong>{label}</strong>
-            <span class="nitaq-thinking-bar"></span>
+            <span class="mizan-thinking-bar"></span>
           </div>
         </div>
         """
@@ -189,8 +173,8 @@ def _clear_conversation() -> None:
     st.session_state.conversation_context = {}
     st.session_state.pending_question = None
     st.session_state.pending_history = []
-    st.session_state.pop("nitaq_suggestion_ar", None)
-    st.session_state.pop("nitaq_suggestion_en", None)
+    st.session_state.pop("mizan_suggestion_ar", None)
+    st.session_state.pop("mizan_suggestion_en", None)
 
 
 def _queue_question(question: str) -> None:
@@ -222,44 +206,41 @@ def _details_label(payload: dict[str, Any], language: str = "ar") -> str:
 def _loading_label(question: str, language: str = "ar") -> str:
     lowered = question.lower()
     if any(token in lowered for token in ("اشتراط", "لائحة", "دليل", "ما هي", "ماهي", "تعريف", "requirement", "regulation", "guide", "definition", "what is", "what are")):
-        return "Nitaq is searching the documents…" if language == "en" else "نطاق يبحث في الوثائق…"
+        return "Mizan is searching the documents…" if language == "en" else "ميزان يبحث في الوثائق…"
     if any(token in lowered for token in ("قارن", "أفضل", "اتجاه", "طلبات", "مستودع", "ميناء", "compare", "best", "trend", "delivery", "warehouse", "port")):
-        return "Nitaq is analyzing the data…" if language == "en" else "نطاق يحلل البيانات…"
-    return "Nitaq is understanding the question…" if language == "en" else "نطاق يفهم السؤال…"
+        return "Mizan is analyzing the data…" if language == "en" else "ميزان يحلل البيانات…"
+    return "Mizan is understanding the question…" if language == "en" else "ميزان يفهم السؤال…"
 
 
 _initialise_state()
-if not st.session_state.intro_seen:
-    _render_intro_logo()
-    st.session_state.intro_seen = True
 api_key = _load_streamlit_secret()
-offline_flag = os.getenv("NITAQ_UI_OFFLINE", os.getenv("MIZAN_UI_OFFLINE", "0"))
-developer_flag = os.getenv("NITAQ_UI_DEVELOPER_MODE", os.getenv("MIZAN_UI_DEVELOPER_MODE", "0"))
+offline_flag = os.getenv("MIZAN_UI_OFFLINE", "0")
+developer_flag = os.getenv("MIZAN_UI_DEVELOPER_MODE", "0")
 offline = offline_flag == "1" or not api_key
 developer_mode = developer_flag == "1"
 suggested_prompt: str | None = None
 typed_prompt: str | None = None
-ui_language = "en" if st.session_state.nitaq_ui_language == "English" else "ar"
+ui_language = "en" if st.session_state.mizan_ui_language == "English" else "ar"
 text = UI_TEXT[ui_language]
 
 with st.container(horizontal=True, horizontal_alignment="center"):
-    app_shell = st.container(width=1180, key=f"nitaq_direction_{ui_language}")
+    app_shell = st.container(width=1180, key=f"mizan_direction_{ui_language}")
 
 with app_shell:
-    with st.container(key="nitaq_header"):
+    with st.container(key="mizan_header"):
         with st.container(horizontal=True, vertical_alignment="center", horizontal_alignment="distribute"):
             with st.container(gap=None):
-                st.title("∞ Nitaq", anchor=False)
+                st.title(":material/balance: ميزان" if ui_language == "ar" else ":material/balance: Mizan", anchor=False)
                 st.caption(text["subtitle"])
             with st.container(horizontal=True, vertical_alignment="center", horizontal_alignment="right", gap="small"):
                 selected_language = st.segmented_control(
                     "Language",
                     ["العربية", "English"],
-                    key="nitaq_ui_language",
+                    key="mizan_ui_language",
                     label_visibility="collapsed",
                 )
                 if offline:
-                    st.badge(text["offline"], icon=":material/cloud_off:", color="orange")
+                    st.badge(text["offline"], icon=":material/cloud_off:", color="blue")
                 else:
                     st.badge(text["connected"], icon=":material/cloud_done:", color="green")
                 if st.session_state.messages:
@@ -271,19 +252,19 @@ with app_shell:
                     )
 
     conversation = st.container(
-        key="nitaq_conversation",
+        key="mizan_conversation",
         height="content",
         border=False,
     )
     with conversation:
         if not st.session_state.messages:
-            with st.container(key="nitaq_welcome", horizontal_alignment="center", gap="small"):
+            with st.container(key="mizan_welcome", horizontal_alignment="center", gap="small"):
                 st.subheader(text["ask_title"], anchor=False)
                 st.caption(text["intro"])
-                st.caption(text["academic"])
+                st.caption(text["coverage_note"])
                 typed_prompt = st.chat_input(
                     text["input"],
-                    key=f"nitaq_chat_input_{ui_language}",
+                    key=f"mizan_chat_input_{ui_language}",
                     max_chars=4_000,
                     submit_mode="disable",
                     disabled=bool(st.session_state.pending_question),
@@ -292,29 +273,40 @@ with app_shell:
                     text["suggestions"],
                     list(SUGGESTIONS[ui_language]),
                     default=[],
-                    key=f"nitaq_suggestion_{ui_language}",
+                    key=f"mizan_suggestion_{ui_language}",
                     label_visibility="collapsed",
                     width="stretch",
                 )
                 if selected:
                     suggested_prompt = SUGGESTIONS[ui_language][selected]
 
+            with st.container(key="mizan_coverage"):
+                coverage_columns = st.columns(3)
+                for column, label, value in zip(
+                    coverage_columns,
+                    ["مناطق إدارية", "مؤشرات مصدرية", "لغات التحليل"] if ui_language == "ar" else ["Regions", "Source metrics", "Languages"],
+                    ["13", "17", "AR / EN"],
+                    strict=True,
+                ):
+                    with column:
+                        st.metric(label, value, border=True)
+
             st.space("small")
-            with st.container(key="nitaq_how_it_works", gap="small"):
+            with st.container(key="mizan_how_it_works", gap="small"):
                 st.subheader(text["how"], anchor=False)
                 feature_columns = st.columns(3, vertical_alignment="top")
                 for column, (feature_key, icon, heading, description) in zip(feature_columns, HOW_IT_WORKS[ui_language], strict=True):
                     with column:
-                        with st.container(key=f"nitaq_feature_{feature_key}", height="stretch", gap="small"):
+                        with st.container(key=f"mizan_feature_{feature_key}", height="stretch", gap="small"):
                             st.subheader(f"{icon} {heading}", anchor=False)
                             st.caption(description)
 
-            with st.container(key="nitaq_sources", gap="small"):
+            with st.container(key="mizan_sources", gap="small"):
                 st.subheader(text["trusted"], anchor=False)
                 st.caption(text["trusted_note"])
                 with st.container(horizontal=True, gap="small"):
                     for source in TRUSTED_SOURCES:
-                        st.badge(source, icon=":material/check:", color="orange")
+                        st.badge(source, icon=":material/check:", color="blue")
 
         for message_index, message in enumerate(st.session_state.messages):
             avatar = ":material/person:" if message["role"] == "user" else ":material/travel_explore:"
@@ -396,13 +388,13 @@ with app_shell:
             st.rerun()
 
     if not st.session_state.messages:
-        with st.container(key="nitaq_footer", horizontal=True, horizontal_alignment="center", vertical_alignment="center"):
-            st.caption(f"∞  {text['footer']}")
+        with st.container(key="mizan_footer", horizontal=True, horizontal_alignment="center", vertical_alignment="center"):
+            st.caption(f":material/balance: {text['footer']}")
 
 if st.session_state.messages or st.session_state.pending_question:
     typed_prompt = st.chat_input(
         text["input"],
-        key=f"nitaq_chat_input_{ui_language}",
+        key=f"mizan_chat_input_{ui_language}",
         max_chars=4_000,
         submit_mode="disable",
         disabled=bool(st.session_state.pending_question),

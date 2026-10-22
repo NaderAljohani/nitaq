@@ -261,7 +261,7 @@ def _search_knowledge(
 ) -> dict[str, Any]:
     results = retriever.search(query, top_k=top_k, language=language, merge_adjacent=True)
     # A tiny lexical match can otherwise make an unrelated PDF look authoritative
-    # (for example, interpreting "What is Nitaq?" as a warehouse definition).
+    # (for example, interpreting "What is Mizan?" as a warehouse definition).
     # Keep the threshold deliberately low so genuine short Arabic questions survive.
     results = [
         item
@@ -360,7 +360,7 @@ def _get_runtime_info() -> dict[str, Any]:
         "ok": True,
         "tool": "get_runtime_info",
         "runtime_info": {
-            "product": "نطاق Nitaq",
+            "product": "ميزان Mizan",
             "configured_primary_model": config.primary_model,
             "configured_fast_model": config.fast_model,
             "current_date_riyadh": today,
@@ -460,13 +460,13 @@ class ToolRegistry:
             ),
             "describe_available_data": ToolDefinition(
                 "describe_available_data",
-                "Describe the datasets and evidence currently available inside Nitaq, with live counts, periods, and limitations. Use for what data is available, what Nitaq knows, data coverage, or supported analyses.",
+                "Describe the datasets and evidence currently available inside Mizan, with live counts, periods, and limitations. Use for what data is available, what Mizan knows, data coverage, or supported analyses.",
                 AvailableDataArgs,
                 describe_available_data,
             ),
             "get_runtime_info": ToolDefinition(
                 "get_runtime_info",
-                "Return Nitaq's current configured model names, Riyadh date, and timezone. Use only for questions about the current model, product, date, or runtime identity.",
+                "Return Mizan's current configured model names, Riyadh date, and timezone. Use only for questions about the current model, product, date, or runtime identity.",
                 RuntimeInfoArgs,
                 _get_runtime_info,
             ),

@@ -145,7 +145,7 @@ def core_evaluation_cases() -> list[EvaluationCase]:
         ("هل بيانات الإيجارات موجودة؟", "identify_missing_data"),
         ("أعطني مصدر مؤشر السكان", "get_metric_source"),
         ("تحقق هل مقارنة مستودعات الرياض ومكة عادلة", "validate_comparison"),
-        ("Describe all datasets available in Nitaq.", "describe_available_data"),
+        ("Describe all datasets available in Mizan.", "describe_available_data"),
     ]
     cases.extend(
         EvaluationCase(f"additional_{i:02}", q, tool, language="en" if q[0].isascii() else "ar")
@@ -175,7 +175,7 @@ def blind_evaluation_cases() -> list[EvaluationCase]:
         ("هل بياناتك تقيس إشغال المستودعات؟", "identify_missing_data"),
         ("عطني تكلفة مستودع مساحته 5000 متر", "identify_missing_data"),
         ("explain the legal requirements for freight brokerage", "search_knowledge"),
-        ("what data can nitaq analyze?", "describe_available_data"),
+        ("what data can mizan analyze?", "describe_available_data"),
         ("كم عدد سكان الرياض وطلبات التوصيل؟", "get_region_profile"),
         ("قارن كل المؤشرات بين تبوك والجوف", "compare_regions"),
         ("وش اتجاه تراخيص البريد في مكة؟", "get_indicator_trend"),

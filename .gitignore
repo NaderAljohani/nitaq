@@ -19,5 +19,5 @@ Thumbs.db
 *.7z
 *.rar
 data/raw/
-NITAQ_CLIENT_PACKAGE/
+MIZAN_CLIENT_PACKAGE/
 knowledge/rag/*.pdf

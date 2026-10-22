@@ -4,8 +4,8 @@ from dataclasses import dataclass
 
 import pytest
 
-from nitaq.agent import AgentConfig, MizanAgent
-from nitaq.agent.providers import ModelTurn
+from mizan.agent import AgentConfig, MizanAgent
+from mizan.agent.providers import ModelTurn
 
 
 class MinimalPlanner:

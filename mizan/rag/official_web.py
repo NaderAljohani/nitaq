@@ -169,7 +169,7 @@ class OfficialWebResearch:
     def __init__(self, *, timeout_seconds: float = 8.0, max_pages: int = 5):
         self.timeout_seconds = timeout_seconds
         self.max_pages = max(1, min(max_pages, 8))
-        self.user_agent = "Nitaq-Academic-Copilot/1.0 (+official-source-research)"
+        self.user_agent = "Mizan-Academic-Copilot/1.0 (+official-source-research)"
 
     @staticmethod
     def _preferred_domains(query: str) -> list[str]:

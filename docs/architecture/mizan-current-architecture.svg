@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1600" viewBox="0 0 2400 1600" role="img" aria-labelledby="title desc">
-  <title id="title">Nitaq AI Copilot — Current System Architecture</title>
-  <desc id="desc">A high-resolution vector architecture diagram showing the Streamlit experience, Nitaq orchestration, Groq tool planning, deterministic Python analytics, bilingual RAG, repositories, datasets, PDFs, and grounded answer flow.</desc>
+  <title id="title">Mizan AI Copilot — Current System Architecture</title>
+  <desc id="desc">A high-resolution vector architecture diagram showing the Streamlit experience, Mizan orchestration, Groq tool planning, deterministic Python analytics, bilingual RAG, repositories, datasets, PDFs, and grounded answer flow.</desc>
 
   <defs>
     <linearGradient id="background" x1="0" y1="0" x2="1" y2="1">
@@ -75,7 +75,7 @@
   <!-- Header -->
   <g transform="translate(94 75)">
     <rect x="0" y="0" width="15" height="92" rx="8" fill="url(#brand)" filter="url(#softGlow)"/>
-    <text x="45" y="56" class="title">Nitaq AI Copilot</text>
+    <text x="45" y="56" class="title">Mizan AI Copilot</text>
     <text x="47" y="98" class="subtitle">Current system architecture · bilingual logistics evidence and decision assistant</text>
   </g>
   <g transform="translate(1785 92)">
@@ -123,7 +123,7 @@
     <circle cx="58" cy="61" r="29" fill="#b18cff" opacity=".18" stroke="#b18cff"/>
     <path d="M45 61 H71 M58 48 V74 M48 51 L68 71 M68 51 L48 71" stroke="#c8b5ff" stroke-width="3" stroke-linecap="round"/>
     <text x="102" y="58" class="micro">CORE CONTROL PLANE</text>
-    <text x="36" y="121" class="card-title">Nitaq Orchestrator</text>
+    <text x="36" y="121" class="card-title">Mizan Orchestrator</text>
     <text x="36" y="157" class="card-sub">Complexity routing · max 4 steps · cost control</text>
     <text x="36" y="188" class="card-sub">Preserves only relevant conversation context</text>
     <rect x="35" y="207" width="210" height="26" rx="13" fill="#8e6fe2" opacity=".22"/>

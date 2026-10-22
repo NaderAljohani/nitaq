@@ -4,10 +4,10 @@ import re
 
 import pytest
 
-from nitaq.agent.config import AgentConfig
-from nitaq.agent.orchestrator import MizanAgent
-from nitaq.rag import RAGRetriever
-from nitaq.tools.registry import ToolRegistry
+from mizan.agent.config import AgentConfig
+from mizan.agent.orchestrator import MizanAgent
+from mizan.rag import RAGRetriever
+from mizan.tools.registry import ToolRegistry
 
 
 WAREHOUSE_SOURCES = {"momah_warehouse_requirements_2025", "logisti_warehouse_technical_guide"}

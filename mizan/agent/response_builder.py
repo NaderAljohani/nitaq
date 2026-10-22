@@ -490,7 +490,7 @@ def _modon_answer(result: dict[str, Any]) -> str:
 
     scope = " في المناطق المحددة" if regions else ""
     summary = (
-        f"حوّل نطاق ملفات MODON إلى مؤشرات إقليمية للمصانع المنتجة والمساحات والمصانع الجاهزة، "
+        f"حوّل ميزان ملفات MODON إلى مؤشرات إقليمية للمصانع المنتجة والمساحات والمصانع الجاهزة، "
         f"إضافة إلى {_number(snapshot.get('matching_centers'))} مركزًا مدرجًا تحت ملكية الهيئة{scope}."
     )
     facts = [
@@ -509,7 +509,7 @@ def _available_data_answer(result: dict[str, Any]) -> str:
         f"{_number(summary.get('mapped_ports'))} ميناءً مربوطًا، منها {_number(summary.get('ports_with_portwatch'))} بسلاسل نشاط شهرية",
     ]
     return _with_warning(
-        "تغطي بيانات نطاق مؤشرات المناطق والمراكز اللوجستية والموانئ وMODON والاشتراطات والمنهجيات.",
+        "تغطي بيانات ميزان مؤشرات المناطق والمراكز اللوجستية والموانئ وMODON والاشتراطات والمنهجيات.",
         facts,
         result,
         facts_label="حجم التغطية",
@@ -519,7 +519,7 @@ def _available_data_answer(result: dict[str, Any]) -> str:
 def _runtime_info_answer(result: dict[str, Any]) -> str:
     info = result.get("runtime_info", {})
     return _with_warning(
-        f"أنت تستخدم {info.get('product') or 'نطاق Nitaq'}، والنموذج الأساسي المضبوط حاليًا هو {info.get('configured_primary_model') or 'غير محدد'}.",
+        f"أنت تستخدم {info.get('product') or 'ميزان Mizan'}، والنموذج الأساسي المضبوط حاليًا هو {info.get('configured_primary_model') or 'غير محدد'}.",
         [
             f"تاريخ اليوم في توقيت الرياض: {info.get('current_date_riyadh') or 'غير محدد'}",
             f"النموذج السريع الاحتياطي: {info.get('configured_fast_model') or 'غير محدد'}",
@@ -766,7 +766,7 @@ def _knowledge_answer(question: str, result: dict[str, Any]) -> str:
         if text and len(text) <= 420 and not _is_dangling_knowledge_excerpt(text) and latin <= arabic * 2:
             snippets = [text]
         elif latin > arabic * 2:
-            return "عُثر على مقاطع معتمدة باللغة الإنجليزية. في الوضع المتصل يترجم نطاق معناها إلى العربية مع إبقاء الصفحة والمصدر الأصليين في لوحة الأدلة."
+            return "عُثر على مقاطع معتمدة باللغة الإنجليزية. في الوضع المتصل يترجم ميزان معناها إلى العربية مع إبقاء الصفحة والمصدر الأصليين في لوحة الأدلة."
         else:
             return "وجدت صفحات مرتبطة بالسؤال، لكن المقاطع المستخرجة غير مكتملة بما يكفي لعرضها كاشتراط موثوق. راجع المصدر في قسم الأدلة."
     lead = "تلخص الوثائق المعتمدة الإجابة في النقاط التالية:"
@@ -815,7 +815,7 @@ def _knowledge_answer_en(result: dict[str, Any]) -> str:
     unique = list(dict.fromkeys(candidates))[:3]
     if not unique:
         return (
-            "**Summary:** The approved matching passages are in Arabic. In connected mode, Nitaq translates and summarizes them in English while preserving the cited page."
+            "**Summary:** The approved matching passages are in Arabic. In connected mode, Mizan translates and summarizes them in English while preserving the cited page."
         )
     return "**Summary:** The approved documents support these points:\n\n" + "\n".join(f"- {item}" for item in unique)
 
@@ -1103,7 +1103,7 @@ def _compose_english(result: dict[str, Any]) -> str:
                 facts_label="Industrial comparison",
             )
         return _with_warning_en(
-            "Nitaq normalized the available MODON workbooks into regional factory, industrial-area, and ready-factory indicators.",
+            "Mizan normalized the available MODON workbooks into regional factory, industrial-area, and ready-factory indicators.",
             [
                 f"Listed MODON-owned centers: {_number(len(details))}; {_number(active)} active",
                 f"Available MODON workbooks: {_number(len(result.get('industrial_assets', [])))}",
@@ -1116,7 +1116,7 @@ def _compose_english(result: dict[str, Any]) -> str:
     if tool == "describe_available_data":
         summary = result.get("summary", {})
         return _with_warning_en(
-            "Nitaq currently covers regional indicators, listed logistics centers, ports, MODON context, requirements, and methodologies.",
+            "Mizan currently covers regional indicators, listed logistics centers, ports, MODON context, requirements, and methodologies.",
             [
                 f"{_number(summary.get('regional_metrics'))} regional indicators across {_number(summary.get('regions'))} regions",
                 f"{_number(summary.get('listed_logistics_centers'))} listed logistics centers",
@@ -1129,7 +1129,7 @@ def _compose_english(result: dict[str, Any]) -> str:
     if tool == "get_runtime_info":
         info = result.get("runtime_info", {})
         return _with_warning_en(
-            f"You are using {info.get('product') or 'Nitaq'}, currently configured with {info.get('configured_primary_model') or 'an unspecified primary model'}.",
+            f"You are using {info.get('product') or 'Mizan'}, currently configured with {info.get('configured_primary_model') or 'an unspecified primary model'}.",
             [
                 f"Current Riyadh date: {info.get('current_date_riyadh') or 'not specified'}",
                 f"Configured fast fallback model: {info.get('configured_fast_model') or 'not specified'}",

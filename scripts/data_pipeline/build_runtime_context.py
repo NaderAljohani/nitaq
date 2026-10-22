@@ -12,7 +12,7 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from nitaq.tools.modon import load_modon_regional_context
+from mizan.tools.modon import load_modon_regional_context
 
 
 RUNTIME_DIR = ROOT / "data" / "processed" / "runtime"
@@ -58,7 +58,7 @@ def main() -> int:
             for path in outputs
         ],
         "modon_unmapped_industrial_cities": modon.get("unmapped_industrial_cities", []),
-        "raw_archive": "NITAQ_CLIENT_PACKAGE/01_CORE_SOURCE_DATA/RAW_DATA_ARCHIVE/raw_sources_2026-07-30.zip",
+        "raw_archive": "MIZAN_CLIENT_PACKAGE/01_CORE_SOURCE_DATA/RAW_DATA_ARCHIVE/raw_sources_2026-07-30.zip",
     }
     (RUNTIME_DIR / "manifest.json").write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2),

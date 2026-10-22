@@ -2,7 +2,7 @@ from __future__ import annotations
 
 import pytest
 
-from nitaq.tools import (
+from mizan.tools import (
     build_comparison_view,
     build_port_view,
     build_region_profile_view,
@@ -10,7 +10,7 @@ from nitaq.tools import (
     build_trend_view,
     validate_chart_spec,
 )
-from nitaq.tools.exceptions import MizanInputError
+from mizan.tools.exceptions import MizanInputError
 
 
 def test_comparison_chart_uses_exact_tool_table_values():

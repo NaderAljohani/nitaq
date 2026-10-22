@@ -5,10 +5,10 @@ from pathlib import Path
 
 from streamlit.testing.v1 import AppTest
 
-from nitaq.agent import AgentConfig, MizanAgent
-from nitaq.agent.providers import ProviderError
-from nitaq.ui import dashboard
-from nitaq.ui.dashboard import _localize_value, _localized_title, build_dashboard_payload
+from mizan.agent import AgentConfig, MizanAgent
+from mizan.agent.providers import ProviderError
+from mizan.ui import dashboard
+from mizan.ui.dashboard import _localize_value, _localized_title, build_dashboard_payload
 
 
 def _offline_response(question: str) -> dict:
@@ -68,11 +68,10 @@ def test_api_failure_uses_local_evidence_fallback_when_intent_is_known():
 
 
 def test_streamlit_app_runs_and_generates_comparison_dashboard(monkeypatch):
-    monkeypatch.setenv("NITAQ_UI_OFFLINE", "1")
-    monkeypatch.setenv("MIZAN_UI_OFFLINE", "0")
+    monkeypatch.setenv("MIZAN_UI_OFFLINE", "1")
     app = AppTest.from_file(Path(__file__).resolve().parents[1] / "streamlit_app.py", default_timeout=45).run()
     assert not app.exception
-    assert app.title[0].value == "∞ Nitaq"
+    assert "ميزان" in app.title[0].value
     assert len(app.chat_input) == 1
 
     # Streamlit 1.51 exposes pills as a generic ButtonGroup in AppTest.
@@ -88,11 +87,11 @@ def test_streamlit_app_runs_and_generates_comparison_dashboard(monkeypatch):
     assert "compare_regions" not in assistant_text
     assert len(app.metric) >= 2
     assert len(app.dataframe) == 1
-    assert "render_region_map" not in open("nitaq/ui/dashboard.py", encoding="utf-8").read()
+    assert "render_region_map" not in open("mizan/ui/dashboard.py", encoding="utf-8").read()
 
 
 def test_streamlit_app_renders_current_center_listing_without_document_fallback(monkeypatch):
-    monkeypatch.delenv("NITAQ_UI_OFFLINE", raising=False)
+    monkeypatch.delenv("MIZAN_UI_OFFLINE", raising=False)
     monkeypatch.setenv("MIZAN_UI_OFFLINE", "1")
     app = AppTest.from_file(Path(__file__).resolve().parents[1] / "streamlit_app.py", default_timeout=45).run()
     app.chat_input[0].set_value("أين توجد المراكز الـ59؟").run()
@@ -106,11 +105,11 @@ def test_streamlit_app_renders_current_center_listing_without_document_fallback(
 
 
 def test_streamlit_english_mode_renders_an_english_grounded_answer(monkeypatch):
-    monkeypatch.delenv("NITAQ_UI_OFFLINE", raising=False)
+    monkeypatch.delenv("MIZAN_UI_OFFLINE", raising=False)
     monkeypatch.setenv("MIZAN_UI_OFFLINE", "1")
     app = AppTest.from_file(Path(__file__).resolve().parents[1] / "streamlit_app.py", default_timeout=45).run()
     app.get("button_group")[0].set_value("English").run()
-    assert app.chat_input[0].placeholder.startswith("Ask Nitaq")
+    assert app.chat_input[0].placeholder.startswith("Ask Mizan")
 
     app.chat_input[0].set_value("Compare delivery demand in Riyadh and Makkah.").run()
     assert not app.exception
@@ -193,20 +192,22 @@ def test_chart_skips_empty_and_non_finite_numeric_data(monkeypatch):
     assert any("لا توجد قيم رقمية صالحة" in caption for caption in captions)
 
 
-def test_nitaq_brand_theme_uses_black_orange_identity():
-    css = open("nitaq/ui/theme.css", encoding="utf-8").read()
-    config = open(".streamlit/config.toml", encoding="utf-8").read()
-    assert "#e95b0c" in css.lower()
-    assert "background: #0b0b0b" in css.lower()
-    assert 'primaryColor = "#E95B0C"' in config
+def test_landing_page_shows_documented_coverage_in_both_languages(monkeypatch):
+    monkeypatch.setenv("MIZAN_UI_OFFLINE", "1")
+    app = AppTest.from_file(Path(__file__).resolve().parents[1] / "streamlit_app.py", default_timeout=45).run()
+    assert not app.exception
+    assert [metric.value for metric in app.metric] == ["13", "17", "AR / EN"]
+    app.get("button_group")[0].set_value("English").run()
+    assert "Mizan" in app.title[0].value
+    assert [metric.label for metric in app.metric] == ["Regions", "Source metrics", "Languages"]
 
 
 def test_chat_uses_bottom_dock_natural_scroll_and_language_direction_styles():
     app_source = open("streamlit_app.py", encoding="utf-8").read()
-    css = open("nitaq/ui/theme.css", encoding="utf-8").read()
-    assert 'key=f"nitaq_chat_input_{ui_language}"' in app_source
+    css = open("mizan/ui/theme.css", encoding="utf-8").read()
+    assert 'key=f"mizan_chat_input_{ui_language}"' in app_source
     assert 'height="content"' in app_source
-    assert 'key=f"nitaq_direction_{ui_language}"' in app_source
-    assert ".st-key-nitaq_direction_ar" in css
-    assert ".st-key-nitaq_chat_input_ar" in css
+    assert 'key=f"mizan_direction_{ui_language}"' in app_source
+    assert ".st-key-mizan_direction_ar" in css
+    assert ".st-key-mizan_chat_input_ar" in css
     assert "direction: rtl" in css

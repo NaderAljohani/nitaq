@@ -1,1 +1,1 @@
-"""Automated acceptance and regression tests for Nitaq."""
+"""Automated acceptance and regression tests for Mizan."""

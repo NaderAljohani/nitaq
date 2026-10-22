@@ -1,6 +1,6 @@
 # Publication preparation
 
-The publication copy is based on the existing local Nitaq application. It keeps
+The publication copy is based on the existing local Mizan application. It keeps
 runtime data, retrieval metadata, application code, and offline tests.
 
 - Excluded credentials, Git history, environments, caches, full source PDFs, and the client handoff archive.

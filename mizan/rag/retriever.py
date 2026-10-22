@@ -100,7 +100,7 @@ class MultilingualSubwordEmbedder:
     downloaded neural model.
     """
 
-    name = "nitaq-multilingual-subword-hash-v1"
+    name = "mizan-multilingual-subword-hash-v1"
 
     def __init__(self, dimensions: int = 384):
         self.dimensions = dimensions
@@ -441,7 +441,7 @@ class RAGBuilder:
             metadata = {
                 "source_id": source_id,
                 "title_ar": next((line.lstrip("# ") for line in body.splitlines() if line.startswith("# ")), metric_id),
-                "agency": frontmatter.get("source_agency", "Nitaq / official source"),
+                "agency": frontmatter.get("source_agency", "Mizan / official source"),
                 "year": frontmatter.get("year"),
                 "language": "ar",
                 "document_type": "metric_card_definition",

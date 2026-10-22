@@ -2,10 +2,10 @@ from __future__ import annotations
 
 import pytest
 
-from nitaq.agent.config import AgentConfig
-from nitaq.agent.orchestrator import MizanAgent
-from nitaq.agent.providers import ProviderError
-from nitaq.agent.query_context import analyse_query
+from mizan.agent.config import AgentConfig
+from mizan.agent.orchestrator import MizanAgent
+from mizan.agent.providers import ProviderError
+from mizan.agent.query_context import analyse_query
 
 
 PHASE1_ACCEPTANCE = [
@@ -22,7 +22,7 @@ PHASE1_ACCEPTANCE = [
     ("قارن طلبات التوصيل بين الرياض ومكة", "analytics", "compare_regions", None),
     ("اعرض اتجاه طلبات التوصيل في الرياض", "analytics", "get_indicator_trend", None),
     ("قارن بين الموانئ المتاحة من حيث الواردات", "analytics", "compare_ports", None),
-    ("وش البيانات المتوفرة في نطاق؟", "analytics", "describe_available_data", None),
+    ("وش البيانات المتوفرة في ميزان؟", "analytics", "describe_available_data", None),
     ("وين توجد المراكز اللوجستية الحالية؟", "analytics", "list_logistics_centers", None),
     ("ما اشتراطات بناء وتشغيل المستودعات؟", "regulatory", "search_knowledge", None),
     ("وش متطلبات السلامة والحريق للمستودع؟", "regulatory", "search_knowledge", None),
@@ -31,7 +31,7 @@ PHASE1_ACCEPTANCE = [
     ("ما البيانات الإلزامية في وثيقة الشحن؟", "regulatory", "search_knowledge", None),
     ("وش أفضل مدينة أفتح فيها مستودع؟", "recommendation", "evaluate_warehouse_locations", None),
     ("رشح بين الرياض وجدة لمركز توزيع", "recommendation", "evaluate_warehouse_locations", None),
-    ("وش هو نطاق باختصار؟", "conversation", None, None),
+    ("وش هو ميزان باختصار؟", "conversation", None, None),
     ("وش النموذج الحالي وكم تاريخ اليوم؟", "conversation", "get_runtime_info", None),
     ("وش تقدر تساعدني فيه لوجستيًا؟", "general_knowledge", None, None),
     ("طيب ما المقصود بمخزون الأمان؟", "general_knowledge", None, {"topic": "ports", "last_tool": "compare_ports", "ports": ["SAJED"]}),

@@ -1,4 +1,4 @@
-# Optional, one-time OCR rebuild dependencies. Not needed to run Nitaq.
+# Optional, one-time OCR rebuild dependencies. Not needed to run Mizan.
 pypdfium2>=5,<6
 winrt-Windows.Foundation>=3.2,<4
 winrt-Windows.Foundation.Collections>=3.2,<4

@@ -1361,7 +1361,7 @@ def describe_available_data(
     *,
     repository: MizanRepository | None = None,
 ) -> dict[str, Any]:
-    """Describe the evidence actually loaded by Nitaq using live repository counts."""
+    """Describe the evidence actually loaded by Mizan using live repository counts."""
     repo = _repo(repository)
     modon_source_count = len(load_modon_regional_context(repo.root).get("sources", []))
     portwatch_available = int(repo.ports["portwatch_available"].astype(bool).sum())
@@ -1674,7 +1674,7 @@ def identify_missing_data(
                 *alternative_metric_ids,
             ]))
         ),
-        "limitations": [PRODUCT_LIMITATION, "عدم وجود المؤشر في نطاق لا يثبت عدم وجوده خارج المصادر المجمعة."],
+        "limitations": [PRODUCT_LIMITATION, "عدم وجود المؤشر في ميزان لا يثبت عدم وجوده خارج المصادر المجمعة."],
         "missing_data_notes": [
             f"{sum(row['status'] == 'missing' for row in table)} مفاهيم مفقودة، "
             f"{sum(row['status'] == 'partial_context' for row in table)} جزئية، "

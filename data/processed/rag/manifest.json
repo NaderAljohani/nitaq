@@ -3,7 +3,7 @@
   "chunking": "page-preserving semantic sections by headings/articles/chapters, then bounded sentence chunks",
   "chunk_size_chars_max": 1400,
   "long_section_overlap_chars": 120,
-  "embedding_backend": "nitaq-multilingual-subword-hash-v1",
+  "embedding_backend": "mizan-multilingual-subword-hash-v1",
   "embedding_dimensions": 384,
   "embedding_rows": 373,
   "chunk_count": 373,

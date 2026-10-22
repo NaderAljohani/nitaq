@@ -79,9 +79,9 @@ def _simple_conversation(text: str) -> bool:
     return any(
         token in lowered
         for token in (
-            "السلام", "مرحبا", "هلا", "وش تقدر", "من أنت", "من انت", "ماهو نطاق", "ما هو نطاق",
-            "وش هو نطاق", "وش نطاق", "عرف نطاق", "عرّف نطاق", "عرف بنفسك", "عرّف بنفسك", "help", "hello", "hi", "what can you do",
-            "who are you", "what is nitaq", "tell me about nitaq",
+            "السلام", "مرحبا", "هلا", "وش تقدر", "من أنت", "من انت", "ماهو ميزان", "ما هو ميزان",
+            "وش هو ميزان", "وش ميزان", "عرف ميزان", "عرّف ميزان", "عرف بنفسك", "عرّف بنفسك", "help", "hello", "hi", "what can you do",
+            "who are you", "what is mizan", "tell me about mizan",
         )
     ) and not requires_data_tool(text)
 
@@ -535,7 +535,7 @@ class MizanAgent:
                     {
                         "runtime_date_riyadh": datetime.now(ZoneInfo("Asia/Riyadh")).date().isoformat(),
                         "configured_model_for_this_request": model,
-                        "product_name": "نطاق Nitaq",
+                        "product_name": "ميزان Mizan",
                         "adaptive_execution_plan": execution_plan.to_dict(),
                     },
                     ensure_ascii=False,

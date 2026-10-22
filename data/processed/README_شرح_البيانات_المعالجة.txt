@@ -1,4 +1,4 @@
-بيانات تشغيل نطاق المعتمدة
+بيانات تشغيل ميزان المعتمدة
 ==========================
 
 هذا المجلد يحتوي فقط ما يحتاجه التطبيق مباشرة:
@@ -14,6 +14,6 @@
 
 ملفات التحليل الوسيطة، مثل observations وcorrelations وoutliers وGeoJSON،
 ليست مطلوبة للتشغيل. النسخة الكاملة منها محفوظة داخل:
-NITAQ_CLIENT_PACKAGE/01_CORE_SOURCE_DATA/PROCESSED_DATA_SNAPSHOT/
+MIZAN_CLIENT_PACKAGE/01_CORE_SOURCE_DATA/PROCESSED_DATA_SNAPSHOT/
 
 لا تعدّل هذه الملفات يدويًا. أعد بناءها عبر scripts/data_pipeline/ عند الحاجة.

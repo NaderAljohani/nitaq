@@ -6,7 +6,7 @@
 
 ## المصادر
 
-1. **السكان 2023–2024:** ملف KAPSARC المؤرشف في `NITAQ_CLIENT_PACKAGE/01_CORE_SOURCE_DATA/RAW_DATA_ARCHIVE/raw_sources_2026-07-30.zip::data/raw/core/saudi-arabia-population-by-administrative-region-nationality-and-sex.xlsx`، الورقة `Sheet1`، باختيار `Gender = Total` والسنتين 2023 و2024.
+1. **السكان 2023–2024:** ملف KAPSARC المؤرشف في `MIZAN_CLIENT_PACKAGE/01_CORE_SOURCE_DATA/RAW_DATA_ARCHIVE/raw_sources_2026-07-30.zip::data/raw/core/saudi-arabia-population-by-administrative-region-nationality-and-sex.xlsx`، الورقة `Sheet1`، باختيار `Gender = Total` والسنتين 2023 و2024.
 2. **طلبات التوصيل 2024:** GASTAT، إحصاءات التخزين والخدمات اللوجستية 2024، Table 13.
 3. **المستودعات 2023–2024:** GASTAT، إحصاءات التخزين والخدمات اللوجستية 2024، Table 5. طوبقت قيم 2023 على Table 5 في إصدار 2023.
 4. **تراخيص نقل البضائع والبريد:** Table 8 من إصدار 2023 وTable 9 من إصدار 2024.

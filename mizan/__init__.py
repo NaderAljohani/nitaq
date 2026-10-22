@@ -1,4 +1,4 @@
-"""Nitaq logistics intelligence application."""
+"""Mizan logistics intelligence application."""
 
 from .agent import AgentConfig, AgentResponse, MizanAgent
 

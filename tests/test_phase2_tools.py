@@ -5,7 +5,7 @@ import math
 import pandas as pd
 import pytest
 
-from nitaq.tools import (
+from mizan.tools import (
     MizanRepository,
     compare_ports,
     compare_logistics_gateways,
@@ -22,7 +22,7 @@ from nitaq.tools import (
     screen_regions,
     validate_comparison,
 )
-from nitaq.tools.exceptions import MizanInputError
+from mizan.tools.exceptions import MizanInputError
 
 
 @pytest.fixture(scope="module")

@@ -95,7 +95,7 @@ AVAILABLE_DATA_WORDS = (
     "كل البيانات", "وش البيانات اللي تقدر", "ما البيانات التي تستطيع", "available data", "data available",
     "what data do you have", "all the data", "what data can you use", "data coverage", "supported data",
     "describe all datasets", "available datasets", "datasets available",
-    "what data can nitaq analyze", "what can nitaq analyze",
+    "what data can mizan analyze", "what can mizan analyze",
 )
 RUNTIME_INFO_WORDS = (
     "النموذج الحالي", "وش النموذج", "ما هو النموذج", "ماهو النموذج", "تاريخ اليوم", "كم التاريخ", "وش التاريخ",
@@ -107,9 +107,9 @@ GENERAL_EXPLANATION_CUES = (
     "what does", "difference between",
 )
 PRODUCT_INFO_WORDS = (
-    "ماهو نطاق", "ما هو نطاق", "وش هو نطاق", "وش نطاق", "من هو نطاق", "عرف نطاق", "عرّف نطاق",
+    "ماهو ميزان", "ما هو ميزان", "وش هو ميزان", "وش ميزان", "من هو ميزان", "عرف ميزان", "عرّف ميزان",
     "من انت", "من أنت", "عرف بنفسك", "عرّف بنفسك",
-    "what is nitaq", "who is nitaq", "who are you", "tell me about nitaq",
+    "what is mizan", "who is mizan", "who are you", "tell me about mizan",
 )
 WAREHOUSE_SETUP_WORDS = (
     "ابني", "أبني", "بناء", "انشاء", "إنشاء", "اشتراط", "شروط", "متطلبات",

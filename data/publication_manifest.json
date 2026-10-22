@@ -3,8 +3,8 @@
   "files": [
     {
       "path": "data/processed/mizan_context_asset_catalog.csv",
-      "bytes": 3952,
-      "sha256": "40afbd4a2057899d3c00b7c23eb41b9bdee5a4e1f5f4abb5d33c8b2744acd549"
+      "bytes": 3951,
+      "sha256": "0cd46836e7b023fde9e45c0567839f6c937b17f76ad647268db9fba73f841afa"
     },
     {
       "path": "data/processed/mizan_metric_catalog_phase1.csv",
@@ -27,16 +27,6 @@
       "sha256": "6fd5cb9a5857f4fabc5ec8134c284f8094dc41da679c19fe5c1f0039eec91ca6"
     },
     {
-      "path": "data/processed/README_شرح_البيانات_المعالجة.txt",
-      "bytes": 1344,
-      "sha256": "714d35c6645d3dd9b1f58f0172c5e142572833abf4f66e05c637692ba40b9f79"
-    },
-    {
-      "path": "data/processed/saudi_regions_geography.csv",
-      "bytes": 5600,
-      "sha256": "dc48470e331e93e54977085c0a1e16a37e8eb1f08b06dc4cd5ae5994facc6ab8"
-    },
-    {
       "path": "data/processed/rag/chunks.jsonl",
       "bytes": 789941,
       "sha256": "bcbcd18c38fea9919a824e224ebf99f3024ec05951e9d5259f992ba8892271b3"
@@ -48,8 +38,13 @@
     },
     {
       "path": "data/processed/rag/manifest.json",
-      "bytes": 9092,
-      "sha256": "71f990f7877de7874e9bf50fc99fa78798de79f399d5a142edd3503ad083dcd5"
+      "bytes": 8693,
+      "sha256": "e9c19ce7938e45967461257b85175f4042f6cf57b2aefd783b505cb0eb908ee6"
+    },
+    {
+      "path": "data/processed/README_شرح_البيانات_المعالجة.txt",
+      "bytes": 1346,
+      "sha256": "6ee829f6eeda431ea5bc895608d157bc6db31bc7d526ad4aefbf9f83281a39ed"
     },
     {
       "path": "data/processed/runtime/logistics_centers_snapshot_2026-07-28.csv",
@@ -58,8 +53,8 @@
     },
     {
       "path": "data/processed/runtime/manifest.json",
-      "bytes": 914,
-      "sha256": "04837a9902bd59d1c97c16e59d899987617ca1cbeb1a9670304bba5aad6bc291"
+      "bytes": 893,
+      "sha256": "b16e45ce4aef9a4002e4b15217aa21cf51d8798f26375bd38893bda58554260e"
     },
     {
       "path": "data/processed/runtime/modon_regional_context_2023_2024.csv",
@@ -74,7 +69,12 @@
     {
       "path": "data/processed/runtime/README_AR.md",
       "bytes": 630,
-      "sha256": "9a7d05f44ef5ff96dfd067858fe2a7bfe573e9f1248b6503b7981f4f08d7ecf2"
+      "sha256": "d335a52fef15ede2cd9fe1ee1a550fbc1d35164c1a6688e169e4f600ace7ce38"
+    },
+    {
+      "path": "data/processed/saudi_regions_geography.csv",
+      "bytes": 5600,
+      "sha256": "dc48470e331e93e54977085c0a1e16a37e8eb1f08b06dc4cd5ae5994facc6ab8"
     }
   ]
 }

@@ -7,12 +7,12 @@ from zoneinfo import ZoneInfo
 
 import pytest
 
-from nitaq.agent import AgentConfig, MizanAgent
-from nitaq.agent.providers import LLMProvider, ModelTurn, ProviderError, ProviderRateLimitError, ToolCall
-from nitaq.rag import RAGRetriever
-from nitaq.agent.response_builder import compose_evidence_answer, summary_matches_primary_higher
-from nitaq.tools.registry import ToolRegistry
-from nitaq.agent.guardrails import remove_unverified_calculation_lines, validate_answer
+from mizan.agent import AgentConfig, MizanAgent
+from mizan.agent.providers import LLMProvider, ModelTurn, ProviderError, ProviderRateLimitError, ToolCall
+from mizan.rag import RAGRetriever
+from mizan.agent.response_builder import compose_evidence_answer, summary_matches_primary_higher
+from mizan.tools.registry import ToolRegistry
+from mizan.agent.guardrails import remove_unverified_calculation_lines, validate_answer
 
 
 @pytest.fixture(scope="module")
@@ -82,7 +82,7 @@ class ScreeningSynthesisProvider:
     def complete(self, *, model, messages, tools, tool_choice=None):
         self.calls += 1
         if self.calls == 1:
-            from nitaq.agent.query_context import default_warehouse_decision_arguments
+            from mizan.agent.query_context import default_warehouse_decision_arguments
 
             return ModelTurn(
                 model=model,
@@ -171,7 +171,7 @@ def test_ungrounded_number_is_not_shown_to_user(config: AgentConfig):
 
 
 def test_query_context_preserves_successful_followup_intent_and_resolves_cities():
-    from nitaq.agent.query_context import analyse_query
+    from mizan.agent.query_context import analyse_query
 
     first = analyse_query("اعرض اتجاه طلبات التوصيل ربع السنوي في الرياض ومكة")
     assert first.intent_hint == "get_indicator_trend"
@@ -190,7 +190,7 @@ def test_query_context_preserves_successful_followup_intent_and_resolves_cities(
 
 
 def test_current_centers_decisions_and_modon_route_to_structured_tools():
-    from nitaq.agent.query_context import analyse_query
+    from mizan.agent.query_context import analyse_query
 
     listing = analyse_query("ماهي المراكز أو المستودعات الحالية في جميع المناطق؟")
     assert listing.intent_hint == "list_logistics_centers"
@@ -242,7 +242,7 @@ def test_conversation_goal_survives_location_slot_and_product_identity_starts_fr
     assert "الاشتراطات" in hail.answer
     assert "814,935" in hail.answer
 
-    identity = agent.ask("ماهو نطاق؟", context=hail.context)
+    identity = agent.ask("ماهو ميزان؟", context=hail.context)
     assert identity.tool_trace == []
     assert identity.context.get("goal") is None
     assert "مساعد جامعي" in identity.answer
@@ -257,7 +257,7 @@ def test_generic_port_comparison_uses_every_comparable_available_series(config: 
 
 
 def test_explicit_comparison_breaks_sticky_warehouse_goal_and_supports_all_metrics():
-    from nitaq.agent.query_context import analyse_query
+    from mizan.agent.query_context import analyse_query
 
     previous = {
         "goal": "warehouse_location",
@@ -282,7 +282,7 @@ def test_explicit_comparison_breaks_sticky_warehouse_goal_and_supports_all_metri
 
 
 def test_ports_and_centers_route_to_neutral_gateway_analysis():
-    from nitaq.agent.query_context import analyse_query
+    from mizan.agent.query_context import analyse_query
 
     previous = {
         "goal": "warehouse_location",
@@ -330,7 +330,7 @@ def test_latest_conversation_sequence_uses_the_right_structured_tools(config: Ag
 
 
 def test_population_followup_keeps_regions_but_changes_metric():
-    from nitaq.agent.query_context import analyse_query
+    from mizan.agent.query_context import analyse_query
 
     query = analyse_query(
         "طيب من ناحية عدد السكان؟",
@@ -415,7 +415,7 @@ def test_harmless_question_after_override_phrase_is_not_blocked(config: AgentCon
 
 
 def test_new_warehouse_topic_does_not_inherit_port_intent():
-    from nitaq.agent.query_context import analyse_query
+    from mizan.agent.query_context import analyse_query
 
     after_ports = analyse_query(
         "أضف المستودعات",
@@ -446,7 +446,7 @@ def test_new_warehouse_topic_after_ports_requests_region_instead_of_reusing_port
 
 
 def test_common_yanbu_port_name_resolves():
-    from nitaq.tools.entities import extract_port_mentions, resolve_port_alias
+    from mizan.tools.entities import extract_port_mentions, resolve_port_alias
 
     assert resolve_port_alias("ميناء ينبع") == "SAYNB"
     assert [item.canonical for item in extract_port_mentions("قارن ميناء ينبع وميناء جدة")] == ["SAYNB", "SAJED"]
@@ -670,7 +670,7 @@ class RateLimitThenFastProvider:
 
 def test_primary_rate_limit_falls_back_to_fast_model(config: AgentConfig):
     provider = RateLimitThenFastProvider(config.primary_model)
-    response = MizanAgent(config, provider=provider).ask("اشرح نطاق Mizan")
+    response = MizanAgent(config, provider=provider).ask("اشرح ميزان Mizan")
     assert response.model == config.fast_model
     assert response.guardrails["fallback_model_used"] is True
 
@@ -682,7 +682,7 @@ def test_fast_model_is_selected_for_simple_conversation(config: AgentConfig):
 
 
 def test_answer_sanitizer_removes_hidden_direction_marks_and_inline_document_citations():
-    from nitaq.agent.orchestrator import _sanitize_answer_text
+    from mizan.agent.orchestrator import _sanitize_answer_text
 
     answer = _sanitize_answer_text("الشرط\u200f\u200f 25٪ 【اشتراطات المستودعات، ص. 22】\n\n\nالتفصيل")
     assert answer == "الشرط 25٪\n\nالتفصيل"
@@ -690,7 +690,7 @@ def test_answer_sanitizer_removes_hidden_direction_marks_and_inline_document_cit
 
 
 def test_decision_followup_outranks_comparison_validation_phrase():
-    from nitaq.agent.query_context import analyse_query
+    from mizan.agent.query_context import analyse_query
 
     followup = analyse_query(
         "أضف الواردات البحرية للقرار إذا كانت المقارنة عادلة.",
@@ -706,14 +706,14 @@ def test_decision_followup_outranks_comparison_validation_phrase():
 
 
 def test_region_profile_outranks_generic_explain_cue():
-    from nitaq.agent.query_context import analyse_query
+    from mizan.agent.query_context import analyse_query
 
     query = analyse_query("Give me a concise logistics profile for the Eastern Region and explain the data limits.")
     assert query.intent_hint == "get_region_profile"
 
 
 def test_final_acceptance_topic_switches_keep_only_relevant_context():
-    from nitaq.agent.query_context import analyse_query
+    from mizan.agent.query_context import analyse_query
 
     regional = analyse_query("قارن الرياض والمنطقة الشرقية في كل البيانات اللوجستية المتوفرة واشرح الفروقات بوضوح.")
     assert regional.intent_hint == "compare_regions"
@@ -733,7 +733,7 @@ def test_final_acceptance_topic_switches_keep_only_relevant_context():
     assert port_followup.intent_hint == "compare_ports"
     assert port_followup.current_regions == []
 
-    identity = analyse_query("وش هو نطاق باختصار؟", {"last_tool": "search_knowledge", "goal": "warehouse_setup"})
+    identity = analyse_query("وش هو ميزان باختصار؟", {"last_tool": "search_knowledge", "goal": "warehouse_setup"})
     assert identity.product_identity is True
     assert identity.intent_hint is None
     assert identity.retains_previous_context is False
@@ -748,7 +748,7 @@ def test_post_live_acceptance_sequence_routes_all_seven_turns(config: AgentConfi
         ("طيب وش الاستنتاج العملي من بياناتها المتاحة بدون ما تفترض أشياء ناقصة؟", ["compare_ports"]),
         ("غيّر الموضوع: ماهي اشتراطات المستودعات اللوجستية؟", ["search_knowledge"]),
         ("أبي أبنيه في حائل، اربط المتطلبات بواقع المنطقة واقترح لي قرارًا مبدئيًا.", ["search_knowledge", "get_region_profile"]),
-        ("وش هو نطاق باختصار؟", []),
+        ("وش هو ميزان باختصار؟", []),
         ("وأخيرًا وش كل البيانات اللي تقدر تستخدمها؟", ["describe_available_data"]),
     ]
     for question, expected_tools in sequence:

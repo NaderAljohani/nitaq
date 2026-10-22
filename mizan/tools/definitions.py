@@ -262,8 +262,8 @@ MISSING_DATA_CATALOG = {
         "label_en": "Land and rent cost",
         "status": "missing",
         "metric_ids": [],
-        "note_ar": "لا توجد سلسلة إقليمية عادلة للأسعار أو الإيجارات في مصادر نطاق الحالية.",
-        "note_en": "Nitaq's current sources do not include a comparable regional land-price or rent series.",
+        "note_ar": "لا توجد سلسلة إقليمية عادلة للأسعار أو الإيجارات في مصادر ميزان الحالية.",
+        "note_en": "Mizan's current sources do not include a comparable regional land-price or rent series.",
         "aliases": ["rent", "land cost", "cost", "الإيجار", "الايجار", "تكلفة الأرض", "التكلفة"],
     },
     "labor_and_operating_cost": {

@@ -4,11 +4,11 @@ import re
 import statistics
 import time
 
-from nitaq.agent import AgentConfig, MizanAgent
+from mizan.agent import AgentConfig, MizanAgent
 from tests.evaluation_cases import core_evaluation_cases
-from nitaq.agent.providers import ModelTurn, ProviderError
-from nitaq.agent.response_builder import compose_evidence_answer
-from nitaq.agent.verification import verify_grounded_decision
+from mizan.agent.providers import ModelTurn, ProviderError
+from mizan.agent.response_builder import compose_evidence_answer
+from mizan.agent.verification import verify_grounded_decision
 
 
 TECHNICAL_TOKENS = (

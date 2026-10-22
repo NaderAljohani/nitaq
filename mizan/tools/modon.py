@@ -7,7 +7,7 @@ from typing import Any
 import pandas as pd
 
 
-ARCHIVE_PATH = "NITAQ_CLIENT_PACKAGE/01_CORE_SOURCE_DATA/RAW_DATA_ARCHIVE/raw_sources_2026-07-30.zip"
+ARCHIVE_PATH = "MIZAN_CLIENT_PACKAGE/01_CORE_SOURCE_DATA/RAW_DATA_ARCHIVE/raw_sources_2026-07-30.zip"
 
 
 @lru_cache(maxsize=4)

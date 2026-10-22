@@ -1,4 +1,4 @@
-"""Deterministic analytics tools for Nitaq.
+"""Deterministic analytics tools for Mizan.
 
 The package contains no LLM calls. Public tools return JSON-serializable
 evidence, tables, provenance, limitations, and deterministic chart specs.

@@ -15,14 +15,14 @@ ROOT = Path(__file__).resolve().parents[2]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from nitaq.agent import AgentConfig, MizanAgent  # noqa: E402
+from mizan.agent import AgentConfig, MizanAgent  # noqa: E402
 from tests.evaluation_cases import (  # noqa: E402
     EvaluationCase,
     blind_evaluation_cases,
     core_evaluation_cases,
 )
-from nitaq.agent.providers import ProviderError  # noqa: E402
-from nitaq.rag.official_web import OfficialWebResearch  # noqa: E402
+from mizan.agent.providers import ProviderError  # noqa: E402
+from mizan.rag.official_web import OfficialWebResearch  # noqa: E402
 
 
 TECHNICAL_TOKENS = (
@@ -122,7 +122,7 @@ def write_markdown(report: dict[str, Any], path: Path) -> None:
     blind = report["blind_30"]
     live = report.get("live_sample")
     lines = [
-        "# تقرير جاهزية مناقشة نطاق Nitaq",
+        "# تقرير جاهزية مناقشة ميزان Mizan",
         "",
         f"تاريخ القياس: {report['generated_at_riyadh']}",
         "",
@@ -174,7 +174,7 @@ def write_markdown(report: dict[str, Any], path: Path) -> None:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run Nitaq Phase 4 discussion-readiness evaluation.")
+    parser = argparse.ArgumentParser(description="Run Mizan Phase 4 discussion-readiness evaluation.")
     parser.add_argument("--live-limit", type=int, default=0, help="Optional live Groq sample, capped at four questions.")
     args = parser.parse_args()
     config = AgentConfig.from_env(ROOT)

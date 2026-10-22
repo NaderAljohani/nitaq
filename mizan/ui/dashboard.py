@@ -423,7 +423,7 @@ def render_answer_card(
     elif status and str(status).startswith("blocked"):
         label, icon, color = ("Answer blocked" if language == "en" else "تعذر إكمال الإجابة"), "warning", "red"
     else:
-        label, icon, color = ("Nitaq answer" if language == "en" else "إجابة نطاق"), "auto_awesome", "green"
+        label, icon, color = ("Mizan answer" if language == "en" else "إجابة ميزان"), "auto_awesome", "green"
 
     with st.container(border=True, key=key, gap="small"):
         st.badge(label, icon=f":material/{icon}:", color=color)
@@ -547,10 +547,10 @@ def render_chart(spec: dict[str, Any], language: str = "ar") -> None:
             alt.Color(
                 "السلسلة:N",
                 title="المنطقة أو السلسلة",
-                scale=alt.Scale(range=["#E95B0C", "#111111", "#F39252", "#6B625C", "#A83A00"]),
+                scale=alt.Scale(range=["#087F8C", "#142B40", "#20B5AD", "#647B8C", "#07515B"]),
             )
             if color_source
-            else alt.value("#E95B0C")
+            else alt.value("#087F8C")
         )
         chart = (
             alt.Chart(data)
@@ -578,7 +578,12 @@ def render_chart(spec: dict[str, Any], language: str = "ar") -> None:
         x_encoding = (
             alt.X("المحور الأفقي:Q", title=unit_label, scale=alt.Scale(zero=True), stack=None)
             if horizontal
-            else alt.X("المحور الأفقي:N", title="Region or location" if language == "en" else "المنطقة أو الموقع", sort=None)
+            else alt.X(
+                "المحور الأفقي:N",
+                title="Region or location" if language == "en" else "المنطقة أو الموقع",
+                sort=None,
+                axis=alt.Axis(labelAngle=0 if len(data) <= 5 else -35, labelLimit=180),
+            )
         )
         y_encoding = (
             alt.Y("المحور الرأسي:N", title="Region or location" if language == "en" else "المنطقة أو الموقع", sort=None)
@@ -606,7 +611,7 @@ def render_chart(spec: dict[str, Any], language: str = "ar") -> None:
                     "التمييز:N",
                     scale=alt.Scale(
                         domain=["Leading", "Other results"] if language == "en" else ["الأبرز", "بقية النتائج"],
-                        range=["#E95B0C", "#C8BEB7"],
+                        range=["#087F8C", "#A8C8CD"],
                     ),
                     legend=None,
                 ),

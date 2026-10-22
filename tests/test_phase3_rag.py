@@ -3,7 +3,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from nitaq.rag import RAGBuilder, RAGRetriever
+from mizan.rag import RAGBuilder, RAGRetriever
 
 
 def test_rag_manifest_includes_reviewed_ocr_regulation_and_metric_cards():

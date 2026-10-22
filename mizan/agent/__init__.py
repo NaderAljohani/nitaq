@@ -1,4 +1,4 @@
-"""Grounded conversational agent for Nitaq.
+"""Grounded conversational agent for Mizan.
 
 The package connects the LLM planner to deterministic tools and grounded
 retrieval. The model selects evidence and explains it; Python owns calculations.

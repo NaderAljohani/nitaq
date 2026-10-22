@@ -1,16 +1,18 @@
-# Nitaq | Saudi logistics evidence copilot
+# Mizan | Saudi logistics evidence copilot
 
-[![Tests](https://github.com/NaderAljohani/nitaq/actions/workflows/ci.yml/badge.svg)](https://github.com/NaderAljohani/nitaq/actions/workflows/ci.yml)
+[![Tests](https://github.com/NaderAljohani/mizan/actions/workflows/ci.yml/badge.svg)](https://github.com/NaderAljohani/mizan/actions/workflows/ci.yml)
 
-Nitaq answers Arabic and English questions about Saudi regional logistics using
+Mizan answers Arabic and English questions about Saudi regional logistics using
 documented data and cited passages. It covers 13 regions and 17 source metrics.
 Python tools calculate comparisons and screening results; the conversational
 layer routes questions and explains the evidence.
 
-![Nitaq Arabic comparison, chart, data table, and source references](docs/images/nitaq-demo.gif)
+![Mizan Arabic comparison, chart, data table, and source references](docs/images/mizan-demo.gif)
 
 Ten-second walkthrough of the running application in local evidence mode:
 an Arabic question, the comparison chart, its data table, and the source references.
+
+[Home screen](docs/images/mizan-home.jpg) · [System architecture](docs/architecture/mizan-current-architecture.svg)
 
 The repository runs in local evidence mode without an API key. An optional
 Groq integration adds model-assisted conversation.
@@ -37,7 +39,7 @@ python -m streamlit run streamlit_app.py
 
 No setup key is required for the default local evidence mode. For optional
 model-assisted conversation, copy `.env.example` to `.env`, add your own
-`GROQ_API_KEY`, and set `NITAQ_UI_OFFLINE=0`. Model availability depends on your
+`GROQ_API_KEY`, and set `MIZAN_UI_OFFLINE=0`. Model availability depends on your
 provider account. Technical conversation logging is disabled by default.
 
 For Streamlit hosting, use `streamlit_app.py` as the entrypoint. Store a real
@@ -45,10 +47,10 @@ key in the platform's Secrets panel, rather than a tracked file. The supported
 dependency ranges are in `requirements.txt`; `requirements-lock.txt` records
 the resolved dependencies used for local verification.
 
-New configurations use `NITAQ_PRIMARY_MODEL`, `NITAQ_FAST_MODEL`,
-`NITAQ_MAX_TOOL_ITERATIONS`, `NITAQ_RAG_TOP_K`, `NITAQ_UI_OFFLINE`, and
-`NITAQ_UI_DEVELOPER_MODE`. Their older `MIZAN_*` equivalents remain supported;
-when both names are set, the `NITAQ_*` value takes precedence.
+Configuration uses `MIZAN_PRIMARY_MODEL`, `MIZAN_FAST_MODEL`,
+`MIZAN_MAX_TOOL_ITERATIONS`, `MIZAN_RAG_TOP_K`, `MIZAN_UI_OFFLINE`, and
+`MIZAN_UI_DEVELOPER_MODE`. Start from the supplied `.env.example` when updating
+an existing local installation.
 
 ## Try it
 
@@ -70,10 +72,10 @@ flowchart LR
 
 | Path | Contents |
 |---|---|
-| `nitaq/agent/` | Routing, provider integration, guardrails, response verification |
-| `nitaq/tools/` | Read-only data access and deterministic analytics |
-| `nitaq/rag/` | Retrieval, source ingestion, and official web research |
-| `nitaq/ui/` | Dashboard rendering and theme |
+| `mizan/agent/` | Routing, provider integration, guardrails, response verification |
+| `mizan/tools/` | Read-only data access and deterministic analytics |
+| `mizan/rag/` | Retrieval, source ingestion, and official web research |
+| `mizan/ui/` | Dashboard rendering and theme |
 | `data/processed/` | Runtime datasets and prepared retrieval index |
 | `knowledge/` | Source catalog, metric cards, and extraction metadata |
 | `tests/` | Offline analytics, retrieval, agent, and UI checks |
@@ -99,7 +101,7 @@ python -m pytest -q
 ```
 
 The test suite includes a 100-question offline evaluation, grounding checks,
-retrieval provenance, configuration compatibility, and headless UI interactions.
+retrieval provenance, environment configuration, and headless UI interactions.
 The linked CI runs the release checks and tests on Windows and Linux. Live
 provider response quality requires separate evaluation.
 

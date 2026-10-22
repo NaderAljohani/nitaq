@@ -164,14 +164,14 @@ class OfflineRuleProvider:
         if any(
             phrase in text
             for phrase in (
-                "ماهو نطاق", "ما هو نطاق", "وش نطاق", "من أنت", "من انت", "عرف بنفسك", "عرّف بنفسك",
-                "what is nitaq", "who is nitaq", "who are you", "tell me about nitaq",
+                "ماهو ميزان", "ما هو ميزان", "وش ميزان", "من أنت", "من انت", "عرف بنفسك", "عرّف بنفسك",
+                "what is mizan", "who is mizan", "who are you", "tell me about mizan",
             )
         ):
             content = (
-                "Nitaq is a bilingual university logistics-intelligence copilot. It connects approved Saudi data and documents with deterministic Python analysis, then explains the evidence and its limits."
+                "Mizan is a bilingual university logistics-intelligence copilot. It connects approved Saudi data and documents with deterministic Python analysis, then explains the evidence and its limits."
                 if language == "en"
-                else "نطاق مساعد جامعي ثنائي اللغة للذكاء اللوجستي. يربط البيانات والوثائق السعودية المعتمدة بتحليل Python حتمي، ثم يشرح الأدلة وحدودها بلغة واضحة."
+                else "ميزان مساعد جامعي ثنائي اللغة للذكاء اللوجستي. يربط البيانات والوثائق السعودية المعتمدة بتحليل Python حتمي، ثم يشرح الأدلة وحدودها بلغة واضحة."
             )
             return ModelTurn(model=f"offline::{model}", content=content, finish_reason="stop")
         if not tools:

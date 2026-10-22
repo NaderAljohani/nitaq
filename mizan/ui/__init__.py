@@ -1,4 +1,4 @@
-"""Streamlit presentation components for Nitaq."""
+"""Streamlit presentation components for Mizan."""
 
 from .dashboard import build_dashboard_payload, render_answer_card, render_dashboard
 
